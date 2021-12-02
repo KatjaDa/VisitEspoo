@@ -9,18 +9,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function control(e) {
         if (e.keyCode === 32) {
-            console.log("returned: " + returned)
+            // console.log("returned: " + returned)
             if (!isJumping && isGameOver === false) {
                 isJumping = true
                 jump()
             }
-            if (isGameOver === true /* && returned === true */) {
+            if (!isJumping && isGameOver === true) {
+                isJumping = true
                 console.log("start")
                 returned = false;
                 document.querySelectorAll('.obstacle').forEach(e => e.remove());
                 isGameOver = false;
                 // console.log(isGameOver)
                 // clearTimeout(generateObstacles)
+                slideBackground()
                 generateObstacles()
                 jump()
                 alert.innerHTML = ''
@@ -105,6 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         console.log("test")
                         return
                     }
+                    if (obstaclePosition < -120) {
+                        obstacle.remove()
+                    }
                     if (!isGameOver) {
                         obstaclePosition -= 2
                         obstacle.style.left = obstaclePosition + 'px'
@@ -133,18 +138,20 @@ document.addEventListener('DOMContentLoaded', () => {
             returned = true
             return true
         }
-        // if (!isGameOver) setTimeout(generateObstacles, randomTime)
-        // else{
-        //     console.log("return")
-        //     return
-        // }
     }
 
-    // function checker() {
-    //     setTimeout(checker, 1)
-    //     if(isGameOver === true)
-    //         clearTimeout(generateObstacles)
-    //     console.log("test")
-    // }
-    // checker()
+    const slidingBackground = document.querySelector('.slidingBackground')
+
+    let bPosition = 0;
+    function slideBackground() {
+        {
+            let interval = setInterval(function () {
+                bPosition -= 2;
+                slidingBackground.style.backgroundPosition = bPosition + "px 0px"
+                if (isGameOver) {
+                    clearInterval(interval)
+                }
+            }, 1);
+        }
+    }
 })
