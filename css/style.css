@@ -1,16 +1,16 @@
 .dino {
     position: absolute;
-    width: 60px;
-    height: 60px;
-    background-image: url('../images/t-rex.png');
+    width: 120px;
+    height: 120px;
+    background-image: url('../images/Hedgehog_walk.gif');
     bottom: 0px;
   }
   
   .obstacle {
     position: absolute;
-    width: 60px;
-    height: 60px;
-    background-image: url('../images/cacti.png');
+    width: 120px;
+    height: 120px;
+    background-image: url('../images/cacti_scale_2x.png');
     bottom: 0px;
   }
   
@@ -35,7 +35,7 @@
   #desert {
     position: absolute;
     bottom: 0px;
-    background-image: url('../images/t-rex-background.png');
+    background-image: url('../images/t-rex-background_scale_2x.png');
     background-repeat: repeat-x;
     animation: slideright 600s infinite linear;
     -webkit-animation: slideright 600s infinite linear;
