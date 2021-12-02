@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             //move down
             if (speed < 4) {
                 gravity = 1
-                console.log("test")
+                // console.log("test")
                 clearInterval(timerId)
                 let downTimerId = setInterval(function () {
                     // if (position <= 1) {
@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function generateObstacles() {
         let randomTime = Math.random() * 4000
+        console.log("random time: " + randomTime)
         let obstaclePosition = 1000
         const obstacle = document.createElement('div')
         if (!isGameOver) obstacle.classList.add('obstacle')
@@ -83,9 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
             }
-            obstaclePosition -= 10
+            obstaclePosition -= 2
             obstacle.style.left = obstaclePosition + 'px'
-        }, 20)
+        }, 1)
         if (!isGameOver) setTimeout(generateObstacles, randomTime)
     }
     generateObstacles()
