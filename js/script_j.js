@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.querySelector('body')
     const alert = document.getElementById('alert')
     let isJumping = false
-    let gravity = 0.9
     let isGameOver = false
 
     function control(e) {
@@ -17,30 +16,50 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     document.addEventListener('keydown', control)
 
-    let position = 0
+    let position = 1
     function jump() {
-        let count = 0
+        let gravity = 1
+        let speed = 30
+        position = 1
+        // let count = 0
         let timerId = setInterval(function () {
+            
             //move down
-            if (count === 15) {
+            if (speed < 4) {
+                gravity = 1
+                console.log("test")
                 clearInterval(timerId)
                 let downTimerId = setInterval(function () {
-                    if (count === 0) {
+                    // if (position <= 1) {
+                    //     clearInterval(downTimerId)
+                    //     isJumping = false
+                    // }
+                    // position -= 30
+                    // count--
+                    gravity = gravity*1.02
+                    speed = speed*gravity
+                    position = position - speed
+                    if(position > 1)
+                        dino.style.bottom = position + 'px'
+                    else{
+                        dino.style.bottom = 1 + 'px'
                         clearInterval(downTimerId)
                         isJumping = false
                     }
-                    position -= 5
-                    count--
-                    position = position * gravity
-                    dino.style.bottom = position + 'px'
                 }, 20)
 
             }
             //move up
-            position += 30
-            count++
-            position = position * gravity
-            dino.style.bottom = position + 'px'
+            // position += 30
+            // count++
+            // speed = speed / gravity
+            gravity = gravity/1.02
+            speed = speed*gravity
+            position = position + speed
+            // console.log("speed" + speed)
+            // console.log("position" + position)
+            if(position > 1)
+                dino.style.bottom = position + 'px'
         }, 20)
     }
 
