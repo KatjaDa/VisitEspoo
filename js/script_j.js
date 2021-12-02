@@ -4,12 +4,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.querySelector('body')
     const alert = document.getElementById('alert')
     let isJumping = false
-    let isGameOver = false
+    let isGameOver = true
 
     function control(e) {
         if (e.keyCode === 32) {
-            if (!isJumping) {
+            if (!isJumping && isGameOver === false) {
                 isJumping = true
+                jump()
+            }
+            if(isGameOver === true){
+                isGameOver = false;
+                console.log(isGameOver)
+                generateObstacles()
                 jump()
             }
         }
@@ -78,16 +84,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert.innerHTML = 'Game Over'
                 isGameOver = true
                 //remove all children
-                body.removeChild(body.firstChild)
-                while (grid.firstChild) {
-                    grid.removeChild(grid.lastChild)
-                }
-
+                // body.removeChild(body.firstChild)
+                // while (grid.firstChild) {
+                //     grid.removeChild(grid.lastChild)
+                // }
             }
             obstaclePosition -= 2
             obstacle.style.left = obstaclePosition + 'px'
         }, 1)
         if (!isGameOver) setTimeout(generateObstacles, randomTime)
     }
-    generateObstacles()
 })
