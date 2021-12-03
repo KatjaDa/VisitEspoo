@@ -91,12 +91,16 @@ document.addEventListener('DOMContentLoaded', () => {
             let obstaclePosition = 1000
             const obstacle = document.createElement('div')
             obstacle.classList.add('obstacle')
+
+            let whichObstacle = randomIntFromInterval(1, 3)
+            obstacle.style.backgroundImage = "url('images/obstacle_" + whichObstacle + ".png')"
+
             grid.appendChild(obstacle)
             obstacle.style.left = obstaclePosition + 'px'
 
             if (isGameOver === false) {
                 let timerId = setInterval(function () {
-                    if (obstaclePosition > 0 && obstaclePosition < 60 && position < 60) {
+                    if (obstaclePosition > 0 && obstaclePosition < 50 && position < 50) {
                         clearInterval(timerId)
                         // obstaclePosition = 1000
                         alert.innerHTML = 'Game Over'
