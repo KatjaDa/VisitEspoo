@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let isJumping = false
     let isGameOver = true
     let returned = true
-    let slideSpeed = 2;
+    let slideSpeed = 2
+    let spawnMaxInterval = 3500
 
     function control(e) {
         if (e.keyCode === 32) {
@@ -84,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isGameOver === false) {
             // console.log("spawn")
             // let randomTime = Math.random() * 4000
-            let randomTime = randomIntFromInterval(400, 3500)
+            let randomTime = randomIntFromInterval(400, spawnMaxInterval)
             // let randomTime = 400
 
             // console.log("random time: " + randomTime)
@@ -159,7 +160,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (isGameOver) {
                     clearInterval(interval)
                     slideSpeed = 2
+                    spawnMaxInterval = 3500
                 }
+                if (spawnMaxInterval >= 1200) {
+                    spawnMaxInterval -= 0.04
+                }
+                console.log("spawnMaxInterval: " + spawnMaxInterval)
                 slideSpeed += 0.0001
             }, 1);
         }
