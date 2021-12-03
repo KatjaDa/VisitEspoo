@@ -35,13 +35,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let position = 1
     function jump() {
         let gravity = 1
-        let speed = 30
+        let speed = 13
         position = 1
         // let count = 0
         let timerId = setInterval(function () {
 
             //move down
-            if (speed < 4) {
+            if (speed < 3) {
                 gravity = 1
                 // console.log("test")
                 clearInterval(timerId)
