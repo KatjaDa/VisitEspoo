@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isJumping = false
     let isGameOver = true
     let returned = true
+    let slideSpeed = 2;
 
     function control(e) {
         if (e.keyCode === 32) {
@@ -111,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         obstacle.remove()
                     }
                     if (!isGameOver) {
-                        obstaclePosition -= 2
+                        obstaclePosition -= slideSpeed
                         obstacle.style.left = obstaclePosition + 'px'
                         // console.log(clearTimeout(generateObstacles))
                     } else {
@@ -146,11 +147,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function slideBackground() {
         {
             let interval = setInterval(function () {
-                bPosition -= 2;
+                bPosition -= slideSpeed;
                 slidingBackground.style.backgroundPosition = bPosition + "px 0px"
                 if (isGameOver) {
                     clearInterval(interval)
+                    slideSpeed = 2
                 }
+                slideSpeed += 0.0001
             }, 1);
         }
     }
