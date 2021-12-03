@@ -83,7 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function generateObstacles() {
         if (isGameOver === false) {
             // console.log("spawn")
-            let randomTime = Math.random() * 4000
+            // let randomTime = Math.random() * 4000
+            let randomTime = randomIntFromInterval(400, 3500)
+            // let randomTime = 400
+
             // console.log("random time: " + randomTime)
             let obstaclePosition = 1000
             const obstacle = document.createElement('div')
@@ -156,5 +159,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 slideSpeed += 0.0001
             }, 1);
         }
+    }
+
+    function randomIntFromInterval(min, max) { // min and max included 
+        return Math.floor(Math.random() * (max - min + 1) + min)
     }
 })
