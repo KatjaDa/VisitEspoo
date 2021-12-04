@@ -8,22 +8,44 @@ document.addEventListener('DOMContentLoaded', () => {
     let returned = true
     let slideSpeed = 2
     let spawnMaxInterval = 3500
+    let tryToJump = 0
+    let intervalSet = false
 
     function control(e) {
+        // if (!isJumping) {
         if (e.keyCode === 32) {
-            // console.log("returned: " + returned)
-            if (!isJumping && isGameOver === false) {
+            if (intervalSet === false) {
+                tryToJump = setInterval(function () {
+                    intervalSet = true;
+                    // console.log("returned: " + returned)
+                    if (!isJumping && isGameOver === false) {
+                        isJumping = true
+                        jump()
+                        clearInterval(tryToJump)
+                        return
+                    } else if (!isJumping && isGameOver === true) {
+                        isJumping = true
+                        console.log("start")
+                        returned = false;
+                        document.querySelectorAll('.obstacle').forEach(e => e.remove());
+                        isGameOver = false;
+                        slideBackground()
+                        generateObstacles()
+                        jump()
+                        alert.innerHTML = ''
+                        clearInterval(tryToJump)
+                        return
+                    }
+                }, 1)
+            } else if (!isJumping && isGameOver === false) {
                 isJumping = true
                 jump()
-            }
-            if (!isJumping && isGameOver === true) {
+            } else if (!isJumping && isGameOver === true) {
                 isJumping = true
                 console.log("start")
                 returned = false;
                 document.querySelectorAll('.obstacle').forEach(e => e.remove());
                 isGameOver = false;
-                // console.log(isGameOver)
-                // clearTimeout(generateObstacles)
                 slideBackground()
                 generateObstacles()
                 jump()
@@ -31,7 +53,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
+
+    function controlRelease(e) {
+        if (e.keyCode === 32) {
+            clearInterval(tryToJump)
+            intervalSet = false
+            console.log("keyup " + tryToJump)
+        }
+    }
+
     document.addEventListener('keydown', control)
+    document.addEventListener('keyup', controlRelease)
 
     let position = 1
     function jump() {
@@ -165,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (spawnMaxInterval >= 1200) {
                     spawnMaxInterval -= 0.04
                 }
-                console.log("spawnMaxInterval: " + spawnMaxInterval)
+                // console.log("spawnMaxInterval: " + spawnMaxInterval)
                 slideSpeed += 0.0001
             }, 1);
         }
