@@ -17,15 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let intervalSet = false
     let score = 0
     let highScore = 0
-    // let obstacleRemoved = false
 
     function control(e) {
-        // if (!isJumping) {
         if (e.keyCode === 32) {
             if (intervalSet === false) {
                 tryToJump = setInterval(function () {
                     intervalSet = true;
-                    // console.log("returned: " + returned)
                     if (!isJumping && isGameOver === false) {
                         isJumping = true
                         jump()
@@ -33,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         return
                     } else if (!isJumping && isGameOver === true) {
                         isJumping = true
-                        console.log("start")
                         returned = false;
                         document.querySelectorAll('.obstacle').forEach(e => e.remove());
                         isGameOver = false;
@@ -52,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 jump()
             } else if (!isJumping && isGameOver === true) {
                 isJumping = true
-                console.log("start")
                 returned = false;
                 document.querySelectorAll('.obstacle').forEach(e => e.remove());
                 isGameOver = false;
@@ -70,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.keyCode === 32) {
             clearInterval(tryToJump)
             intervalSet = false
-            console.log("keyup " + tryToJump)
         }
     }
 
@@ -88,15 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
             //move down
             if (speed < 3) {
                 gravity = 1
-                // console.log("test")
                 clearInterval(timerId)
                 let downTimerId = setInterval(function () {
-                    // if (position <= 1) {
-                    //     clearInterval(downTimerId)
-                    //     isJumping = false
-                    // }
-                    // position -= 30
-                    // count--
                     gravity = gravity * 1.02
                     speed = speed * gravity
                     position = position - speed
@@ -110,15 +97,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 20)
 
             }
-            //move up
-            // position += 30
-            // count++
-            // speed = speed / gravity
             gravity = gravity / 1.02
             speed = speed * gravity
             position = position + speed
-            // console.log("speed" + speed)
-            // console.log("position" + position)
             if (position > 1)
                 dino.style.bottom = position + 'px'
         }, 20)
@@ -127,12 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function generateObstacles() {
         if (isGameOver === false) {
-            // console.log("spawn")
-            // let randomTime = Math.random() * 4000
             let randomTime = randomIntFromInterval(400, spawnMaxInterval)
-            // let randomTime = 400
-
-            // console.log("random time: " + randomTime)
             let obstaclePosition = 1000
             const obstacle = document.createElement('div')
             obstacle.classList.add('obstacle')
@@ -148,20 +124,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 let timerId = setInterval(function () {
                     if (obstaclePosition > 0 && obstaclePosition < 50 && position < 50) {
                         clearInterval(timerId)
-                        // obstaclePosition = 1000
                         alert.innerHTML = 'Game Over. Press the spacebar to try again!'
                         isGameOver = true
                         clearTimeout(timeout)
-                        // console.log("game over")
-                        //remove all children
-                        // body.removeChild(body.firstChild)
-                        // while (grid.firstChild) {
-                        //     grid.removeChild(grid.lastChild)
-                        // }
-                        console.log("test")
                         return
                     }
-                    if (obstaclePosition < -120 /* && obstacleRemoved === false */) {
+                    if (obstaclePosition < -120) {
                         obstacle.remove()
                         score++
                         if(score >= highScore){
@@ -170,35 +138,27 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         scoreText.innerHTML = "Score: " + score
                         obstacleRemoved = true
-                        // clearInterval(timerId)
-                        // return
-                        // console.log("obstacle.remove() " + obstacle.remove())
+                        clearInterval(timerId)
+                        return
                     }
                     if (!isGameOver) {
                         obstaclePosition -= slideSpeed
                         obstacle.style.left = obstaclePosition + 'px'
-                        // console.log(clearTimeout(generateObstacles))
                     } else {
-                        console.log("test")
-                        console.log("timeout" + timeout)
                         clearTimeout(timeout)
                         obstaclePosition = 1000
                         clearInterval(timerId)
                         return
-                        // clearInterval(generateObstacles)
                     }
-                    // console.log("obstaclePosition: " + obstaclePosition)
                 }, 1)
             } else return
             if (isGameOver === false) timeout = setTimeout(generateObstacles, randomTime)
             else {
-                console.log(clearTimeout(generateObstacles))
                 clearTimeout(timeout)
             }
         } else {
             clearTimeout(timeout)
             obstaclePosition = 1000
-            console.log("return")
             returned = true
             return true
         }
@@ -220,7 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (spawnMaxInterval >= 1200) {
                     spawnMaxInterval -= 0.04
                 }
-                // console.log("spawnMaxInterval: " + spawnMaxInterval)
                 slideSpeed += 0.0001
             }, 1);
         }
