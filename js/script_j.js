@@ -3,6 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const grid = document.querySelector('.grid')
     const body = document.querySelector('body')
     const alert = document.getElementById('alert')
+    const scoreText = document.getElementById('scoreText')
+    const highScoreText = document.getElementById('highScoreText')
+    scoreText.innerHTML = "Score: " + 0
+    highScoreText.innerHTML = "Highscore: " + 0
+    alert.innerHTML = "Press the spacebar to start!"
     let isJumping = false
     let isGameOver = true
     let returned = true
@@ -10,6 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let spawnMaxInterval = 3500
     let tryToJump = 0
     let intervalSet = false
+    let score = 0
+    let highScore = 0
+    // let obstacleRemoved = false
 
     function control(e) {
         // if (!isJumping) {
@@ -34,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         jump()
                         alert.innerHTML = ''
                         clearInterval(tryToJump)
+                        score = 0
+                        scoreText.innerHTML = "Score: " + score;
                         return
                     }
                 }, 1)
@@ -50,6 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 generateObstacles()
                 jump()
                 alert.innerHTML = ''
+                score = 0
+                scoreText.innerHTML = "Score: " + score;
             }
         }
     }
@@ -124,6 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let obstaclePosition = 1000
             const obstacle = document.createElement('div')
             obstacle.classList.add('obstacle')
+            obstacleRemoved = false
 
             let whichObstacle = randomIntFromInterval(1, 3)
             obstacle.style.backgroundImage = "url('images/obstacle_" + whichObstacle + ".png')"
@@ -136,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (obstaclePosition > 0 && obstaclePosition < 50 && position < 50) {
                         clearInterval(timerId)
                         // obstaclePosition = 1000
-                        alert.innerHTML = 'Game Over'
+                        alert.innerHTML = 'Game Over. Press the spacebar to try again!'
                         isGameOver = true
                         clearTimeout(timeout)
                         // console.log("game over")
@@ -148,8 +161,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         console.log("test")
                         return
                     }
-                    if (obstaclePosition < -120) {
+                    if (obstaclePosition < -120 /* && obstacleRemoved === false */) {
                         obstacle.remove()
+                        score++
+                        if(score >= highScore){
+                            highScore = score
+                            highScoreText.innerHTML = "Highscore: " + highScore
+                        }
+                        scoreText.innerHTML = "Score: " + score
+                        obstacleRemoved = true
+                        // clearInterval(timerId)
+                        // return
+                        // console.log("obstacle.remove() " + obstacle.remove())
                     }
                     if (!isGameOver) {
                         obstaclePosition -= slideSpeed
