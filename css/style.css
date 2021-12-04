@@ -1,4 +1,4 @@
-.dino {
+.hedgehog {
   position: absolute;
   width: 60px;
   height: 60px;
@@ -43,7 +43,7 @@
   }
 }
 
-#desert {
+#espoo {
   position: absolute;
   bottom: 50%;
   left: 25%;
@@ -66,7 +66,7 @@
   font-size: 1.3em;
 }
 
-#alert {
+#guideText {
   float: left;
   color: white;
   font-size: 1.3em;

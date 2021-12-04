@@ -1,13 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const dino = document.querySelector('.dino')
+    const hedgehog = document.querySelector('.hedgehog')
     const grid = document.querySelector('.grid')
     const body = document.querySelector('body')
-    const alert = document.getElementById('alert')
+    const guideText = document.getElementById('guideText')
     const scoreText = document.getElementById('scoreText')
     const highScoreText = document.getElementById('highScoreText')
-    scoreText.innerHTML = "Score: " + 0
-    highScoreText.innerHTML = "Highscore: " + 0
-    alert.innerHTML = "Press the spacebar to start!"
+
     let isJumping = false
     let isGameOver = true
     let returned = true
@@ -17,6 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let intervalSet = false
     let score = 0
     let highScore = 0
+
+    scoreText.innerHTML = "Score: " + 0
+    highScoreText.innerHTML = "Highscore: " + 0
+    guideText.innerHTML = "Press the spacebar to start!"
 
     function control(e) {
         if (e.keyCode === 32) {
@@ -36,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         slideBackground()
                         generateObstacles()
                         jump()
-                        alert.innerHTML = ''
+                        guideText.innerHTML = ''
                         clearInterval(tryToJump)
                         score = 0
                         scoreText.innerHTML = "Score: " + score;
@@ -54,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 slideBackground()
                 generateObstacles()
                 jump()
-                alert.innerHTML = ''
+                guideText.innerHTML = ''
                 score = 0
                 scoreText.innerHTML = "Score: " + score;
             }
@@ -76,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let gravity = 1
         let speed = 13
         position = 1
-        // let count = 0
         let timerId = setInterval(function () {
 
             //move down
@@ -88,9 +89,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     speed = speed * gravity
                     position = position - speed
                     if (position > 1)
-                        dino.style.bottom = position + 'px'
+                        hedgehog.style.bottom = position + 'px'
                     else {
-                        dino.style.bottom = 1 + 'px'
+                        hedgehog.style.bottom = 1 + 'px'
                         clearInterval(downTimerId)
                         isJumping = false
                     }
@@ -101,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
             speed = speed * gravity
             position = position + speed
             if (position > 1)
-                dino.style.bottom = position + 'px'
+                hedgehog.style.bottom = position + 'px'
         }, 20)
     }
     let timeout = 0
@@ -124,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let timerId = setInterval(function () {
                     if (obstaclePosition > 0 && obstaclePosition < 50 && position < 50) {
                         clearInterval(timerId)
-                        alert.innerHTML = 'Game Over. Press the spacebar to try again!'
+                        guideText.innerHTML = 'Game Over. Press the spacebar to try again!'
                         isGameOver = true
                         clearTimeout(timeout)
                         return
@@ -132,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (obstaclePosition < -120) {
                         obstacle.remove()
                         score++
-                        if(score >= highScore){
+                        if (score >= highScore) {
                             highScore = score
                             highScoreText.innerHTML = "Highscore: " + highScore
                         }
