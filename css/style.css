@@ -22,24 +22,6 @@
   z-index: 1;
 }
 
-@keyframes slideright {
-  from {
-      background-position: 70000%;
-  }
-  to {
-      background-position: 0%;
-  }
-}
-
-@-webkit-keyframes slideright {
-  from {
-      background-position: 70000%;
-  }
-  to {
-      background-position: 0%;
-  }
-}
-
 #espoo {
   position: absolute;
   bottom: 50%;
