@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const guideText = document.getElementById('guideText')
     const scoreText = document.getElementById('scoreText')
     const highScoreText = document.getElementById('highScoreText')
+    const canvas = document.getElementById("canvas");
 
     let isJumping = false
     let isGameOver = true
@@ -72,6 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('keydown', control)
     document.addEventListener('keyup', controlRelease)
+    canvas.addEventListener("touchstart", control, false);
+    canvas.addEventListener("touchend", controlRelease, false);
 
     let position = 1
     function jump() {

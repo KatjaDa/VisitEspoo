@@ -62,3 +62,14 @@
 body {
   background-color: #222425;
 }
+
+#canvas {
+  position: absolute;
+  bottom: 50%;
+  width: 1000px;
+  height: 200px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  overflow: hidden;
+}
