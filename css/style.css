@@ -18,6 +18,7 @@
 .slidingBackground {
   background: url("../images/background.png") repeat-x left top;
   height: 200px;
+  width: 1000px;
   z-index: 1;
 }
 
@@ -43,7 +44,7 @@
   position: absolute;
   bottom: 50%;
   left: 25%;
-  width: 50%;
+  width: 1000px;
   height: 200px;
   overflow: hidden;
 }
