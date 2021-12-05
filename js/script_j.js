@@ -23,58 +23,78 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function control(e) {
         if (e.keyCode === 32) {
-            if (intervalSet === false) {
-                tryToJump = setInterval(function () {
-                    intervalSet = true;
-                    if (!isJumping && isGameOver === false) {
-                        isJumping = true
-                        jump()
-                        clearInterval(tryToJump)
-                        return
-                    } else if (!isJumping && isGameOver === true) {
-                        isJumping = true
-                        returned = false;
-                        document.querySelectorAll('.obstacle').forEach(e => e.remove());
-                        isGameOver = false;
-                        slideBackground()
-                        generateObstacles()
-                        jump()
-                        guideText.innerHTML = ''
-                        clearInterval(tryToJump)
-                        score = 0
-                        scoreText.innerHTML = "Score: " + score;
-                        return
-                    }
-                }, 1)
-            } else if (!isJumping && isGameOver === false) {
-                isJumping = true
-                jump()
-            } else if (!isJumping && isGameOver === true) {
-                isJumping = true
-                returned = false;
-                document.querySelectorAll('.obstacle').forEach(e => e.remove());
-                isGameOver = false;
-                slideBackground()
-                generateObstacles()
-                jump()
-                guideText.innerHTML = ''
-                score = 0
-                scoreText.innerHTML = "Score: " + score;
-            }
+            initiateJump()
+        }
+    }
+
+    function initiateJump() {
+        if (intervalSet === false) {
+            tryToJump = setInterval(function () {
+                intervalSet = true;
+                if (!isJumping && isGameOver === false) {
+                    isJumping = true
+                    jump()
+                    // clearInterval(tryToJump)
+                    // return
+                } else if (!isJumping && isGameOver === true) {
+                    isJumping = true
+                    returned = false;
+                    document.querySelectorAll('.obstacle').forEach(e => e.remove());
+                    isGameOver = false;
+                    slideBackground()
+                    generateObstacles()
+                    jump()
+                    guideText.innerHTML = ''
+                    score = 0
+                    scoreText.innerHTML = "Score: " + score;
+                    // clearInterval(tryToJump)
+                    // return
+                }
+            }, 1)
+        } else if (!isJumping && isGameOver === false) {
+            isJumping = true
+            jump()
+        } else if (!isJumping && isGameOver === true) {
+            isJumping = true
+            returned = false;
+            document.querySelectorAll('.obstacle').forEach(e => e.remove());
+            isGameOver = false;
+            slideBackground()
+            generateObstacles()
+            jump()
+            guideText.innerHTML = ''
+            score = 0
+            scoreText.innerHTML = "Score: " + score;
         }
     }
 
     function controlRelease(e) {
         if (e.keyCode === 32) {
-            clearInterval(tryToJump)
-            intervalSet = false
+            releaseJump()
         }
     }
 
+    function releaseJump() {
+        clearInterval(tryToJump)
+        intervalSet = false
+    }
+
+    console.log(canvas)
     document.addEventListener('keydown', control)
     document.addEventListener('keyup', controlRelease)
-    canvas.addEventListener("touchstart", control, false);
-    canvas.addEventListener("touchend", controlRelease, false);
+    // canvas.addEventListener("touchstart", initiateJump, true);
+    // canvas.addEventListener("touchend", releaseJump, true);
+
+    canvas.addEventListener("touchstart", function () {
+        initiateJump()
+        console.log("touchstart")
+    }, {passive: true});
+
+    canvas.addEventListener("touchend", function () {
+        releaseJump()
+        console.log("touchend")
+    }, {passive: true});
+    
 
     let position = 1
     function jump() {
