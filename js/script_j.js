@@ -85,15 +85,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // canvas.addEventListener("touchstart", initiateJump, true);
     // canvas.addEventListener("touchend", releaseJump, true);
 
-    canvas.addEventListener("touchstart", function () {
-        initiateJump()
+    canvas.addEventListener("touchstart", function (evt) {
+        if(evt.touches.length === 1){
+            initiateJump()
+        }else{
+            releaseJump()
+        }
         console.log("touchstart")
     }, {passive: true});
 
     canvas.addEventListener("touchend", function () {
         releaseJump()
-        console.log("touchend")
     }, {passive: true});
+    
+    canvas.addEventListener("touchcancel", function () {
+        releaseJump()
+    }, {passive: true});
+    
+    // canvas.addEventListener("touchmove", function () {
+    //     releaseJump()
+    // }, {passive: true});
     
 
     let position = 1
