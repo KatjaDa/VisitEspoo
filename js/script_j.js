@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new Audio("audio/hedgehog_jump_5.wav"),
     new Audio("audio/hedgehog_nice_score.wav"),
     new Audio("audio/hedgehog_game_over.wav"),
-    new Audio("audio/hedgehog_score_1.wav"),
+    new Audio("audio/hedgehog_score_6.wav"),
     new Audio("audio/hedgehog_score_2.wav"),
     new Audio("audio/hedgehog_score_3.wav"),
     new Audio("audio/hedgehog_score_4.wav"),
@@ -145,7 +145,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             audioClips[5].play()
                             scoreCounterTo10 = 0
                         }else{
-                            audioClips[randomIntFromInterval(7,11)].play()
+                            // audioClips[randomIntFromInterval(7,11)].play()
+                            audioClips[7].play()
                         }
                         scoreText.innerHTML = "Score: " + score
                         obstacleRemoved = true
