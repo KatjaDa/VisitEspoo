@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const hedgehog = document.querySelector('.hedgehog')
     const grid = document.querySelector('.grid')
-    const body = document.querySelector('body')
     const guideText = document.getElementById('guideText')
     const scoreText = document.getElementById('scoreText')
     const highScoreText = document.getElementById('highScoreText')
@@ -9,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let isJumping = false
     let isGameOver = true
-    let returned = true
     let slideSpeed = 2
     let spawnMaxInterval = 3500
     let tryToJump = 0
@@ -75,31 +73,25 @@ document.addEventListener('DOMContentLoaded', () => {
         intervalSet = false
     }
 
-    console.log(canvas)
     document.addEventListener('keydown', control)
     document.addEventListener('keyup', controlRelease)
 
     canvas.addEventListener("touchstart", function (evt) {
-        if(evt.touches.length === 1){
+        if (evt.touches.length === 1) {
             initiateJump()
-        }else{
+        } else {
             releaseJump()
         }
         console.log("touchstart")
-    }, {passive: true})
+    }, { passive: true })
 
     canvas.addEventListener("touchend", function () {
         releaseJump()
-    }, {passive: true})
-    
+    }, { passive: true })
+
     canvas.addEventListener("touchcancel", function () {
         releaseJump()
-    }, {passive: true})
-    
-    // canvas.addEventListener("touchmove", function () {
-    //     releaseJump()
-    // }, {passive: true})
-    
+    }, { passive: true })
 
     let position = 1
     function jump() {
@@ -134,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 hedgehog.style.bottom = position + 'px'
         }, 20)
     }
+
     let timeout = 0
 
     function generateObstacles() {
@@ -196,12 +189,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const slidingBackground = document.querySelector('.slidingBackground')
 
-    let bPosition = 0
+    let backgroundPosition = 0
     function slideBackground() {
         {
             let interval = setInterval(function () {
-                bPosition -= slideSpeed
-                slidingBackground.style.backgroundPosition = bPosition + "px 0px"
+                backgroundPosition -= slideSpeed
+                slidingBackground.style.backgroundPosition = backgroundPosition + "px 0px"
                 if (isGameOver) {
                     clearInterval(interval)
                     slideSpeed = 2
