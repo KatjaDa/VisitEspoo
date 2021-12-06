@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Check if the user is using a touchscreen device or not
+    function checkIfTouchDevice() {
+        return (('ontouchstart' in window) ||
+            (navigator.maxTouchPoints > 0) ||
+            (navigator.msMaxTouchPoints > 0))
+    }
+    let isTouchDevice = checkIfTouchDevice()
+
     const hedgehog = document.querySelector('.hedgehog')
     const grid = document.querySelector('.grid')
     const guideText = document.getElementById('guideText')
@@ -8,7 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     scoreText.innerHTML = "Score: " + 0
     highScoreText.innerHTML = "Highscore: " + 0
-    guideText.innerHTML = "Press the spacebar to start!"
+
+    if (isTouchDevice) {
+        guideText.innerHTML = "Tap the screen to start exploring Espoo! Can you dodge all the attractions?"
+    } else {
+        guideText.innerHTML = "Press the spacebar to start exploring Espoo! Can you dodge all the attractions?"
+    }
 
     let isJumping = false
     let isGameOver = true
@@ -25,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let gravity = 1
         let speed = 13
         playerPosition = 1
-        
+
         let timerId = setInterval(function () {
             //move down
             if (speed < 3) {
@@ -54,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Return a random number between the input values including the min and max values.
-    function randomIntFromInterval(min, max) { 
+    function randomIntFromInterval(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
@@ -80,7 +93,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 let timerId = setInterval(function () {
                     if (obstaclePosition > 0 && obstaclePosition < 50 && playerPosition < 50) {
                         clearInterval(timerId)
-                        guideText.innerHTML = 'Game Over. Press the spacebar to try again!'
+                        // Show game over message based on if the user is using a touchscreen device or not
+                        if (isTouchDevice) {
+                            guideText.innerHTML = "Game Over. Tap the screen to try again!"
+                        } else {
+                            guideText.innerHTML = "Game Over. Press the spacebar to try again!"
+                        }
                         isGameOver = true
                         clearTimeout(timeout)
                         return
