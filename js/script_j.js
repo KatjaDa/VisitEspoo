@@ -209,6 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
         jump()
         guideText.innerHTML = ''
         score = 0
+        scoreCounterTo10 = 0
         scoreText.innerHTML = "Score: " + score
     }
 
