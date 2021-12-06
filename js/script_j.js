@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isGameOver = true
     let slideSpeed = 2
     let spawnMaxInterval = 3500
+    let spawnMinInterval = 1000
     let tryToJump = 0
     let intervalSet = false
     let score = 0
@@ -63,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function generateObstacles() {
         if (isGameOver === false) {
-            let randomTime = randomIntFromInterval(400, spawnMaxInterval)
+            let randomTime = randomIntFromInterval(spawnMinInterval, spawnMaxInterval)
             let obstaclePosition = 1000
             const obstacle = document.createElement('div')
             obstacle.classList.add('obstacle')
@@ -131,10 +132,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 clearInterval(interval)
                 slideSpeed = 2
                 spawnMaxInterval = 3500
+                spawnMinInterval = 1000
             }
-            if (spawnMaxInterval >= 1200) {
+            if (spawnMaxInterval >= 1000) {
                 spawnMaxInterval -= 0.04
             }
+            if (spawnMinInterval >= 400) {
+                spawnMinInterval -= 0.04
+            }
+            console.log("spawnMinInterval" + spawnMinInterval)
             slideSpeed += 0.0001
         }, 1)
     }
