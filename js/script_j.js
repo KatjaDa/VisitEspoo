@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const highScoreText = document.getElementById('highScoreText')
     const canvas = document.getElementById("canvas")
 
+    scoreText.innerHTML = "Score: " + 0
+    highScoreText.innerHTML = "Highscore: " + 0
+    guideText.innerHTML = "Press the spacebar to start!"
+
     let isJumping = false
     let isGameOver = true
     let slideSpeed = 2
@@ -14,83 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let intervalSet = false
     let score = 0
     let highScore = 0
-
-    scoreText.innerHTML = "Score: " + 0
-    highScoreText.innerHTML = "Highscore: " + 0
-    guideText.innerHTML = "Press the spacebar to start!"
-
-    function initiateJump() {
-        if (intervalSet === false) {
-            tryToJump = setInterval(function () {
-                intervalSet = true
-                if (!isJumping && isGameOver === false) {
-                    isJumping = true
-                    jump()
-                } else if (!isJumping && isGameOver === true) {
-                    startGame()
-                }
-            }, 1)
-        } else if (!isJumping && isGameOver === false) {
-            isJumping = true
-            jump()
-        } else if (!isJumping && isGameOver === true) {
-            startGame()
-        }
-    }
-
-    function releaseJump() {
-        clearInterval(tryToJump)
-        intervalSet = false
-    }
-
-    function keyboardControl(e) {
-        if (e.keyCode === 32) {
-            initiateJump()
-        }
-    }
-
-    function keyboardControlRelease(e) {
-        if (e.keyCode === 32) {
-            releaseJump()
-        }
-    }
-
-    function startGame() {
-        isJumping = true
-        document.querySelectorAll('.obstacle').forEach(e => e.remove())
-        isGameOver = false
-        slideBackground()
-        generateObstacles()
-        jump()
-        guideText.innerHTML = ''
-        score = 0
-        scoreText.innerHTML = "Score: " + score
-    }
-
-    document.addEventListener('keydown', keyboardControl)
-    document.addEventListener('keyup', keyboardControlRelease)
-
-    // Passive listeners for touch controls.
-    canvas.addEventListener("touchstart", function (evt) {
-        // Only try jumping if the screen is touched with one finger.
-        // Otherwise stop trying to jump.
-        if (evt.touches.length === 1) {
-            initiateJump()
-        } else {
-            releaseJump()
-        }
-        console.log("touchstart")
-    }, { passive: true })
-
-    canvas.addEventListener("touchend", function () {
-        releaseJump()
-    }, { passive: true })
-
-    canvas.addEventListener("touchcancel", function () {
-        releaseJump()
-    }, { passive: true })
-
-    // player character position
     let playerPosition = 1
 
     function jump() {
@@ -117,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 20)
 
             }
-
             //move up
             gravity = gravity / 1.02
             speed = speed * gravity
@@ -125,6 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (playerPosition > 1)
                 hedgehog.style.bottom = playerPosition + 'px'
         }, 20)
+    }
+
+    // Return a random number between the input values including the min and max values.
+    function randomIntFromInterval(min, max) { 
+        return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
     // The timeout between spawning obstacles. 
@@ -194,25 +125,94 @@ document.addEventListener('DOMContentLoaded', () => {
     /* Slide the background endlessly to the left while the game is running.
     Stop sliding on game over. */
     function slideBackground() {
-        {
-            let interval = setInterval(function () {
-                backgroundPosition -= slideSpeed
-                slidingBackground.style.backgroundPosition = backgroundPosition + "px 0px"
-                if (isGameOver) {
-                    clearInterval(interval)
-                    slideSpeed = 2
-                    spawnMaxInterval = 3500
+        let interval = setInterval(function () {
+            backgroundPosition -= slideSpeed
+            slidingBackground.style.backgroundPosition = backgroundPosition + "px 0px"
+            if (isGameOver) {
+                clearInterval(interval)
+                slideSpeed = 2
+                spawnMaxInterval = 3500
+            }
+            if (spawnMaxInterval >= 1200) {
+                spawnMaxInterval -= 0.04
+            }
+            slideSpeed += 0.0001
+        }, 1)
+    }
+
+    function startGame() {
+        isJumping = true
+        document.querySelectorAll('.obstacle').forEach(e => e.remove())
+        isGameOver = false
+        slideBackground()
+        generateObstacles()
+        jump()
+        guideText.innerHTML = ''
+        score = 0
+        scoreText.innerHTML = "Score: " + score
+    }
+
+    // Try jumping until the player releases the jump control.
+    function initiateJump() {
+        if (intervalSet === false) {
+            tryToJump = setInterval(function () {
+                intervalSet = true
+                if (!isJumping && isGameOver === false) {
+                    isJumping = true
+                    jump()
+                } else if (!isJumping && isGameOver === true) {
+                    startGame()
                 }
-                if (spawnMaxInterval >= 1200) {
-                    spawnMaxInterval -= 0.04
-                }
-                slideSpeed += 0.0001
             }, 1)
+        } else if (!isJumping && isGameOver === false) {
+            isJumping = true
+            jump()
+        } else if (!isJumping && isGameOver === true) {
+            startGame()
         }
     }
 
-    // return a random number between input values
-    function randomIntFromInterval(min, max) { // min and max included 
-        return Math.floor(Math.random() * (max - min + 1) + min)
+    // Stop trying to jump.
+    function releaseJump() {
+        clearInterval(tryToJump)
+        intervalSet = false
     }
+
+    // Check if the spacebar key was pressed on a keyboard.
+    function keyboardControl(e) {
+        if (e.keyCode === 32) {
+            initiateJump()
+        }
+    }
+
+    // Check if the spacebar key was pressed on a keyboard.
+    function keyboardControlRelease(e) {
+        if (e.keyCode === 32) {
+            releaseJump()
+        }
+    }
+
+    // Listeners for keyboard control
+    document.addEventListener('keydown', keyboardControl)
+    document.addEventListener('keyup', keyboardControlRelease)
+
+    // Passive listeners for touch controls.
+    canvas.addEventListener("touchstart", function (evt) {
+        // Only try jumping if the screen is touched with one finger.
+        // Otherwise stop trying to jump.
+        if (evt.touches.length === 1) {
+            initiateJump()
+        } else {
+            releaseJump()
+        }
+        console.log("touchstart")
+    }, { passive: true })
+
+    canvas.addEventListener("touchend", function () {
+        releaseJump()
+    }, { passive: true })
+
+    canvas.addEventListener("touchcancel", function () {
+        releaseJump()
+    }, { passive: true })
 })
