@@ -19,12 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     highScoreText.innerHTML = "Highscore: " + 0
     guideText.innerHTML = "Press the spacebar to start!"
 
-    function control(e) {
-        if (e.keyCode === 32) {
-            initiateJump()
-        }
-    }
-
     function initiateJump() {
         if (intervalSet === false) {
             tryToJump = setInterval(function () {
@@ -33,38 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     isJumping = true
                     jump()
                 } else if (!isJumping && isGameOver === true) {
-                    isJumping = true
-                    returned = false
-                    document.querySelectorAll('.obstacle').forEach(e => e.remove())
-                    isGameOver = false
-                    slideBackground()
-                    generateObstacles()
-                    jump()
-                    guideText.innerHTML = ''
-                    score = 0
-                    scoreText.innerHTML = "Score: " + score
+                    startGame()
                 }
             }, 1)
         } else if (!isJumping && isGameOver === false) {
             isJumping = true
             jump()
         } else if (!isJumping && isGameOver === true) {
-            isJumping = true
-            returned = false
-            document.querySelectorAll('.obstacle').forEach(e => e.remove())
-            isGameOver = false
-            slideBackground()
-            generateObstacles()
-            jump()
-            guideText.innerHTML = ''
-            score = 0
-            scoreText.innerHTML = "Score: " + score
-        }
-    }
-
-    function controlRelease(e) {
-        if (e.keyCode === 32) {
-            releaseJump()
+            startGame()
         }
     }
 
@@ -73,10 +43,37 @@ document.addEventListener('DOMContentLoaded', () => {
         intervalSet = false
     }
 
-    document.addEventListener('keydown', control)
-    document.addEventListener('keyup', controlRelease)
+    function keyboardControl(e) {
+        if (e.keyCode === 32) {
+            initiateJump()
+        }
+    }
 
+    function keyboardControlRelease(e) {
+        if (e.keyCode === 32) {
+            releaseJump()
+        }
+    }
+
+    function startGame() {
+        isJumping = true
+        document.querySelectorAll('.obstacle').forEach(e => e.remove())
+        isGameOver = false
+        slideBackground()
+        generateObstacles()
+        jump()
+        guideText.innerHTML = ''
+        score = 0
+        scoreText.innerHTML = "Score: " + score
+    }
+
+    document.addEventListener('keydown', keyboardControl)
+    document.addEventListener('keyup', keyboardControlRelease)
+
+    // Passive listeners for touch controls.
     canvas.addEventListener("touchstart", function (evt) {
+        // Only try jumping if the screen is touched with one finger.
+        // Otherwise stop trying to jump.
         if (evt.touches.length === 1) {
             initiateJump()
         } else {
@@ -93,11 +90,13 @@ document.addEventListener('DOMContentLoaded', () => {
         releaseJump()
     }, { passive: true })
 
-    let position = 1
+    // player character position
+    let playerPosition = 1
+
     function jump() {
         let gravity = 1
         let speed = 13
-        position = 1
+        playerPosition = 1
         let timerId = setInterval(function () {
 
             //move down
@@ -107,9 +106,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 let downTimerId = setInterval(function () {
                     gravity = gravity * 1.02
                     speed = speed * gravity
-                    position = position - speed
-                    if (position > 1)
-                        hedgehog.style.bottom = position + 'px'
+                    playerPosition = playerPosition - speed
+                    if (playerPosition > 1)
+                        hedgehog.style.bottom = playerPosition + 'px'
                     else {
                         hedgehog.style.bottom = 1 + 'px'
                         clearInterval(downTimerId)
@@ -118,15 +117,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 20)
 
             }
+
             //move up
             gravity = gravity / 1.02
             speed = speed * gravity
-            position = position + speed
-            if (position > 1)
-                hedgehog.style.bottom = position + 'px'
+            playerPosition = playerPosition + speed
+            if (playerPosition > 1)
+                hedgehog.style.bottom = playerPosition + 'px'
         }, 20)
     }
 
+    // The timeout between spawning obstacles. 
+    // Clear this to stop looping the generateObstacles() function and stop spawning obstacles.
     let timeout = 0
 
     function generateObstacles() {
@@ -145,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (isGameOver === false) {
                 let timerId = setInterval(function () {
-                    if (obstaclePosition > 0 && obstaclePosition < 50 && position < 50) {
+                    if (obstaclePosition > 0 && obstaclePosition < 50 && playerPosition < 50) {
                         clearInterval(timerId)
                         guideText.innerHTML = 'Game Over. Press the spacebar to try again!'
                         isGameOver = true
@@ -182,14 +184,15 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             clearTimeout(timeout)
             obstaclePosition = 1000
-            returned = true
             return true
         }
     }
 
     const slidingBackground = document.querySelector('.slidingBackground')
-
     let backgroundPosition = 0
+
+    /* Slide the background endlessly to the left while the game is running.
+    Stop sliding on game over. */
     function slideBackground() {
         {
             let interval = setInterval(function () {
@@ -208,6 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // return a random number between input values
     function randomIntFromInterval(min, max) { // min and max included 
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
