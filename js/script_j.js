@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let gravity = 1
         let speed = 13
         playerPosition = 1
+        
         let timerId = setInterval(function () {
-
             //move down
             if (speed < 3) {
                 gravity = 1
@@ -42,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         isJumping = false
                     }
                 }, 20)
-
             }
             //move up
             gravity = gravity / 1.02
