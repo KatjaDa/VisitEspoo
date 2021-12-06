@@ -63,8 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function jump() {
         hedgehog.style.backgroundImage = "url('images/Hedgehog_jump.png')"
         let randomJumpSound = randomIntFromInterval(0,4)
-        stopAllAudio()
-        audioClips[randomJumpSound].play()
+        if(audioClips[5].currentTime === 0 || audioClips[5].currentTime > 0.3){
+            stopAllAudio()
+            audioClips[randomJumpSound].play()
+        }
 
         let gravity = 1
         let speed = 13
@@ -142,10 +144,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         scoreCounterTo10++
                         if(scoreCounterTo10 === 10){
+                            stopAllAudio()
                             audioClips[5].play()
                             scoreCounterTo10 = 0
                         }else{
                             // audioClips[randomIntFromInterval(7,11)].play()
+                            stopAllAudio()
                             audioClips[7].play()
                         }
                         scoreText.innerHTML = "Score: " + score
