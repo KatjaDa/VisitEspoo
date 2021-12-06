@@ -56,3 +56,6 @@
 body {
   background-color: #222425;
 }
+h1,h2,h3, p{
+  color: white;
+}
