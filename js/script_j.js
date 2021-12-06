@@ -33,9 +33,33 @@ document.addEventListener('DOMContentLoaded', () => {
     let score = 0
     let highScore = 0
     let playerPosition = 1
+    let scoreCounterTo10 = 0
+
+    const audioClips = [new Audio("../audio/hedgehog_jump_1.wav"), 
+    new Audio("../audio/hedgehog_jump_2.wav"),
+    new Audio("../audio/hedgehog_jump_3.wav"),
+    new Audio("../audio/hedgehog_jump_4.wav"),
+    new Audio("../audio/hedgehog_jump_5.wav"),
+    new Audio("../audio/hedgehog_score.wav"),
+    new Audio("../audio/hedgehog_game_over.wav")]
+
+    function stopAllAudio(){
+        audioClips.forEach(function(audio){
+            audio.pause()
+            audio.currentTime = 0
+        })
+    }
+
+    // Return a random number between the input values including the min and max values.
+    function randomIntFromInterval(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min)
+    }
 
     function jump() {
         hedgehog.style.backgroundImage = "url('images/Hedgehog_jump.png')"
+        let randomJumpSound = randomIntFromInterval(0,4)
+        stopAllAudio()
+        audioClips[randomJumpSound].play()
 
         let gravity = 1
         let speed = 13
@@ -69,11 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 20)
     }
 
-    // Return a random number between the input values including the min and max values.
-    function randomIntFromInterval(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min)
-    }
-
     // The timeout between spawning obstacles. 
     // Clear this to stop looping the generateObstacles() function and stop spawning obstacles.
     let timeout = 0
@@ -104,6 +123,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         hedgehog.style.backgroundImage = "url('images/Hedgehog.png')"
                         isGameOver = true
+                        stopAllAudio()
+                        audioClips[6].play()
                         clearTimeout(timeout)
                         return
                     }
@@ -113,6 +134,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (score >= highScore) {
                             highScore = score
                             highScoreText.innerHTML = "Highscore: " + highScore
+                        }
+                        scoreCounterTo10++
+                        if(scoreCounterTo10 === 10){
+                            audioClips[5].play()
+                            scoreCounterTo10 = 0
                         }
                         scoreText.innerHTML = "Score: " + score
                         obstacleRemoved = true
