@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const guideText = document.getElementById('guideText')
     const scoreText = document.getElementById('scoreText')
     const highScoreText = document.getElementById('highScoreText')
-    const canvas = document.getElementById("canvas");
+    const canvas = document.getElementById("canvas")
 
     let isJumping = false
     let isGameOver = true
@@ -30,25 +30,21 @@ document.addEventListener('DOMContentLoaded', () => {
     function initiateJump() {
         if (intervalSet === false) {
             tryToJump = setInterval(function () {
-                intervalSet = true;
+                intervalSet = true
                 if (!isJumping && isGameOver === false) {
                     isJumping = true
                     jump()
-                    // clearInterval(tryToJump)
-                    // return
                 } else if (!isJumping && isGameOver === true) {
                     isJumping = true
-                    returned = false;
-                    document.querySelectorAll('.obstacle').forEach(e => e.remove());
-                    isGameOver = false;
+                    returned = false
+                    document.querySelectorAll('.obstacle').forEach(e => e.remove())
+                    isGameOver = false
                     slideBackground()
                     generateObstacles()
                     jump()
                     guideText.innerHTML = ''
                     score = 0
-                    scoreText.innerHTML = "Score: " + score;
-                    // clearInterval(tryToJump)
-                    // return
+                    scoreText.innerHTML = "Score: " + score
                 }
             }, 1)
         } else if (!isJumping && isGameOver === false) {
@@ -56,15 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
             jump()
         } else if (!isJumping && isGameOver === true) {
             isJumping = true
-            returned = false;
-            document.querySelectorAll('.obstacle').forEach(e => e.remove());
-            isGameOver = false;
+            returned = false
+            document.querySelectorAll('.obstacle').forEach(e => e.remove())
+            isGameOver = false
             slideBackground()
             generateObstacles()
             jump()
             guideText.innerHTML = ''
             score = 0
-            scoreText.innerHTML = "Score: " + score;
+            scoreText.innerHTML = "Score: " + score
         }
     }
 
@@ -82,8 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(canvas)
     document.addEventListener('keydown', control)
     document.addEventListener('keyup', controlRelease)
-    // canvas.addEventListener("touchstart", initiateJump, true);
-    // canvas.addEventListener("touchend", releaseJump, true);
 
     canvas.addEventListener("touchstart", function (evt) {
         if(evt.touches.length === 1){
@@ -92,19 +86,19 @@ document.addEventListener('DOMContentLoaded', () => {
             releaseJump()
         }
         console.log("touchstart")
-    }, {passive: true});
+    }, {passive: true})
 
     canvas.addEventListener("touchend", function () {
         releaseJump()
-    }, {passive: true});
+    }, {passive: true})
     
     canvas.addEventListener("touchcancel", function () {
         releaseJump()
-    }, {passive: true});
+    }, {passive: true})
     
     // canvas.addEventListener("touchmove", function () {
     //     releaseJump()
-    // }, {passive: true});
+    // }, {passive: true})
     
 
     let position = 1
@@ -132,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 20)
 
             }
+            //move up
             gravity = gravity / 1.02
             speed = speed * gravity
             position = position + speed
@@ -201,11 +196,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const slidingBackground = document.querySelector('.slidingBackground')
 
-    let bPosition = 0;
+    let bPosition = 0
     function slideBackground() {
         {
             let interval = setInterval(function () {
-                bPosition -= slideSpeed;
+                bPosition -= slideSpeed
                 slidingBackground.style.backgroundPosition = bPosition + "px 0px"
                 if (isGameOver) {
                     clearInterval(interval)
@@ -216,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     spawnMaxInterval -= 0.04
                 }
                 slideSpeed += 0.0001
-            }, 1);
+            }, 1)
         }
     }
 
