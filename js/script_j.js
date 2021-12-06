@@ -35,13 +35,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let playerPosition = 1
     let scoreCounterTo10 = 0
 
-    const audioClips = [new Audio("../audio/hedgehog_jump_1.wav"), 
-    new Audio("../audio/hedgehog_jump_2.wav"),
-    new Audio("../audio/hedgehog_jump_3.wav"),
-    new Audio("../audio/hedgehog_jump_4.wav"),
-    new Audio("../audio/hedgehog_jump_5.wav"),
-    new Audio("../audio/hedgehog_score.wav"),
-    new Audio("../audio/hedgehog_game_over.wav")]
+    const audioClips = [new Audio("audio/hedgehog_jump_1.wav"), 
+    new Audio("audio/hedgehog_jump_2.wav"),
+    new Audio("audio/hedgehog_jump_3.wav"),
+    new Audio("audio/hedgehog_jump_4.wav"),
+    new Audio("audio/hedgehog_jump_5.wav"),
+    new Audio("audio/hedgehog_nice_score.wav"),
+    new Audio("audio/hedgehog_game_over.wav"),
+    new Audio("audio/hedgehog_score_1.wav"),
+    new Audio("audio/hedgehog_score_2.wav"),
+    new Audio("audio/hedgehog_score_3.wav"),
+    new Audio("audio/hedgehog_score_4.wav"),
+    new Audio("audio/hedgehog_score_5.wav")]
 
     function stopAllAudio(){
         audioClips.forEach(function(audio){
@@ -139,6 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         if(scoreCounterTo10 === 10){
                             audioClips[5].play()
                             scoreCounterTo10 = 0
+                        }else{
+                            audioClips[randomIntFromInterval(7,11)].play()
                         }
                         scoreText.innerHTML = "Score: " + score
                         obstacleRemoved = true
