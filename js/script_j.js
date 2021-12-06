@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let playerPosition = 1
 
     function jump() {
+        hedgehog.style.backgroundImage = "url('images/Hedgehog_jump.png')"
+
         let gravity = 1
         let speed = 13
         playerPosition = 1
@@ -54,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         hedgehog.style.bottom = 1 + 'px'
                         clearInterval(downTimerId)
                         isJumping = false
+                        hedgehog.style.backgroundImage = "url('images/Hedgehog_run.gif')"
                     }
                 }, 20)
             }
@@ -99,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         } else {
                             guideText.innerHTML = "Game Over. Press the spacebar to try again!"
                         }
+                        hedgehog.style.backgroundImage = "url('images/Hedgehog.png')"
                         isGameOver = true
                         clearTimeout(timeout)
                         return
@@ -158,7 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (spawnMinInterval >= 400) {
                 spawnMinInterval -= 0.04
             }
-            console.log("spawnMinInterval" + spawnMinInterval)
             slideSpeed += 0.0001
         }, 1)
     }

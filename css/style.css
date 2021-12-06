@@ -2,7 +2,7 @@
   position: absolute;
   width: 60px;
   height: 60px;
-  background-image: url('../images/Hedgehog_walk.gif');
+  background-image: url('../images/Hedgehog.png');
   bottom: 0px;
   z-index: 2;
 }
