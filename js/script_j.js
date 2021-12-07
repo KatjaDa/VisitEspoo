@@ -132,19 +132,26 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isGameOver === false) {
             let randomTime = randomIntFromInterval(spawnMinInterval, spawnMaxInterval)
             let obstaclePosition = 1000
-            const obstacle = document.createElement('div')
+
+            const obstacle = document.createElement('section')
+            // const obstacle2 = document.createElement('section')
             obstacle.classList.add('obstacle')
+            // obstacle2.classList.add('obstacle')
+
             obstacleRemoved = false
 
             let whichObstacle = randomIntFromInterval(1, 3)
             obstacle.style.backgroundImage = "url('images/obstacle_" + whichObstacle + ".png')"
+            // obstacle2.style.backgroundImage = "url('images/obstacle_" + whichObstacle + ".png')"
 
             grid.appendChild(obstacle)
+            // grid.appendChild(obstacle2)
             obstacle.style.left = obstaclePosition + 'px'
+            // obstacle2.style.left = (obstaclePosition + 60) + 'px'
 
             if (isGameOver === false) {
                 let timerId = setInterval(function () {
-                    if (obstaclePosition > 20 && obstaclePosition < 72 && playerPosition < 72) {
+                    if (obstaclePosition > 20 && obstaclePosition < 80 && playerPosition < 35) {
                         clearInterval(timerId)
                         // Show game over message based on if the user is using a touchscreen device or not
                         if (isTouchDevice) {
@@ -161,6 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     if (obstaclePosition < -70) {
                         obstacle.remove()
+                        // obstacle2.remove()
                         score++
                         if (score >= highScore) {
                             highScore = score
@@ -178,9 +186,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         clearInterval(timerId)
                         return
                     }
+                    // Move obstacle according to the slide speed if the game is not over
                     if (!isGameOver) {
                         obstaclePosition -= slideSpeed
                         obstacle.style.left = obstaclePosition + 'px'
+                        // obstacle2.style.left = (obstaclePosition + 60) + 'px'
                     } else {
                         clearTimeout(timeout)
                         obstaclePosition = 1000
