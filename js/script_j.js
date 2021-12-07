@@ -17,6 +17,18 @@ document.addEventListener('DOMContentLoaded', () => {
     scoreText.innerHTML = "Score: " + 0
     highScoreText.innerHTML = "Highscore: " + 0
 
+    function isElementInViewport(el) {
+
+        let rect = el.getBoundingClientRect()
+
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        )
+    }
+
     if (isTouchDevice) {
         guideText.innerHTML = "Tap the screen to start exploring Espoo! Can you dodge all the attractions?"
     } else {
@@ -35,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let playerPosition = 1
     let scoreCounterTo10 = 0
 
-    const audioClips = [new Audio("audio/hedgehog_jump_1.wav"), 
+    const audioClips = [new Audio("audio/hedgehog_jump_1.wav"),
     new Audio("audio/hedgehog_jump_2.wav"),
     new Audio("audio/hedgehog_jump_3.wav"),
     new Audio("audio/hedgehog_jump_4.wav"),
@@ -48,8 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
     new Audio("audio/hedgehog_score_4.wav"),
     new Audio("audio/hedgehog_score_5.wav")]
 
-    function stopAllAudio(){
-        audioClips.forEach(function(audio){
+    function stopAllAudio() {
+        audioClips.forEach(function (audio) {
             audio.pause()
             audio.currentTime = 0
         })
@@ -62,8 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function jump() {
         hedgehog.style.backgroundImage = "url('images/Hedgehog_jump.png')"
-        let randomJumpSound = randomIntFromInterval(0,4)
-        if(audioClips[5].currentTime === 0 || audioClips[5].currentTime > 0.3){
+        let randomJumpSound = randomIntFromInterval(0, 4)
+        if (audioClips[5].currentTime === 0 || audioClips[5].currentTime > 0.3) {
             stopAllAudio()
             audioClips[randomJumpSound].play()
         }
@@ -143,11 +155,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             highScoreText.innerHTML = "Highscore: " + highScore
                         }
                         scoreCounterTo10++
-                        if(scoreCounterTo10 === 10){
+                        if (scoreCounterTo10 === 10) {
                             stopAllAudio()
                             audioClips[5].play()
                             scoreCounterTo10 = 0
-                        }else{
+                        } else {
                             // audioClips[randomIntFromInterval(7,11)].play()
                             stopAllAudio()
                             audioClips[7].play()
@@ -245,8 +257,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Check if the spacebar key was pressed on a keyboard.
     function keyboardControl(e) {
-        if (e.keyCode === 32) {
+        if (e.keyCode === 32 && isElementInViewport(hedgehog)) {
             initiateJump()
+        }
+        if (isElementInViewport(hedgehog)){
+            window.onkeydown = function(e) { 
+                return !(e.keyCode == 32)
+            }
+        }else{
+            window.onkeydown = function(e) { 
+                return e.keyCode === 32
+            }
         }
     }
 
@@ -265,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.addEventListener("touchstart", function (evt) {
         // Only try jumping if the screen is touched with one finger.
         // Otherwise stop trying to jump.
-        if (evt.touches.length === 1) {
+        if (evt.touches.length === 1 && isElementInViewport(hedgehog)) {
             initiateJump()
         } else {
             releaseJump()
