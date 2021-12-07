@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Check if the user is using a touchscreen device or not
+
+    // Check if the user is using a touchscreen device or not.
     function checkIfTouchDevice() {
         return (('ontouchstart' in window) ||
             (navigator.maxTouchPoints > 0) ||
@@ -17,9 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
     scoreText.innerHTML = "Score: " + 0
     highScoreText.innerHTML = "Highscore: " + 0
 
+    // Check if an element is in the viewport.
     function isElementInViewport(el) {
         let rect = el.getBoundingClientRect()
-
         return (
             rect.top >= 0 &&
             rect.left >= 0 &&
@@ -45,16 +46,17 @@ document.addEventListener('DOMContentLoaded', () => {
     let highScore = 0
     let playerPosition = 1
     let scoreCounterTo10 = 0
-    // let scoreSoundIndex = 
 
     const audioClips = [new Audio("audio/hedgehog_jump_1.wav"),
     new Audio("audio/hedgehog_jump_2.wav"),
     new Audio("audio/hedgehog_jump_3.wav"),
     new Audio("audio/hedgehog_jump_4.wav"),
     new Audio("audio/hedgehog_jump_5.wav"),
-    new Audio("audio/hedgehog_nice_score.wav"),
-    new Audio("audio/hedgehog_game_over.wav"),
-    new Audio("audio/hedgehog_score_1.wav"),
+    new Audio("audio/hedgehog_game_over.wav")]
+
+    const audioClipTenPoints = new Audio("audio/hedgehog_ten_points.wav")
+
+    const audioClipsScore = [new Audio("audio/hedgehog_score_1.wav"),
     new Audio("audio/hedgehog_score_2.wav"),
     new Audio("audio/hedgehog_score_3.wav"),
     new Audio("audio/hedgehog_score_4.wav"),
@@ -64,7 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
     new Audio("audio/hedgehog_score_8.wav"),
     new Audio("audio/hedgehog_score_9.wav")]
 
-    function stopAllAudio() {
+    // Stop all "audioClips" clips (not "audioClipsScore" clips).
+    function stopAudioClips() {
         audioClips.forEach(function (audio) {
             audio.pause()
             audio.currentTime = 0
@@ -78,9 +81,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function jump() {
         hedgehog.style.backgroundImage = "url('images/Hedgehog_jump.png')"
+
+        /* Choose randomly one of the jump audio clips to play.
+        Play the chosen sound if the "getting 10 points" sound or the game over sound isn't playing 
+        or has played long enough so that it can be interrupted. */
         let randomJumpSound = randomIntFromInterval(0, 4)
-        if (audioClips[5].currentTime === 0 || audioClips[5].currentTime > 0.3) {
-            stopAllAudio()
+        if ((audioClips[5].currentTime === 0 || audioClips[5].currentTime > 0.3)) /* &&
+            audioClips[6].currentTime === 0 || audioClips[6].currentTime > 0.3) */ {
+            stopAudioClips()
             audioClips[randomJumpSound].play()
         }
 
@@ -89,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         playerPosition = 1
 
         let timerId = setInterval(function () {
-            //move down
+            // Move down
             if (speed < 3) {
                 gravity = 1
                 clearInterval(timerId)
@@ -107,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }, 20)
             }
-            //move up
+            // Move up
             gravity = gravity / 1.02
             speed = speed * gravity
             playerPosition = playerPosition + speed
@@ -116,8 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 20)
     }
 
-    // The timeout between spawning obstacles. 
-    // Clear this to stop looping the generateObstacles() function and stop spawning obstacles.
+    /* The timeout between spawning obstacles. 
+    Clear this to stop looping the generateObstacles() function and stop spawning obstacles. */
     let timeout = 0
 
     function generateObstacles() {
@@ -146,8 +154,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         hedgehog.style.backgroundImage = "url('images/Hedgehog.png')"
                         isGameOver = true
-                        stopAllAudio()
-                        audioClips[6].play()
+                        stopAudioClips()
+                        audioClips[5].play()
                         clearTimeout(timeout)
                         return
                     }
@@ -160,12 +168,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         scoreCounterTo10++
                         if (scoreCounterTo10 === 10) {
-                            stopAllAudio()
-                            audioClips[5].play()
+                            audioClipTenPoints.play()
                             scoreCounterTo10 = 0
                         } else {
-                            stopAllAudio()
-                            audioClips[(6 + scoreCounterTo10)].play()
+                            audioClipsScore[(-1 + scoreCounterTo10)].play()
                         }
                         scoreText.innerHTML = "Score: " + score
                         obstacleRemoved = true
@@ -263,12 +269,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.keyCode === 32 && isElementInViewport(hedgehog)) {
             initiateJump()
         }
-        if (isElementInViewport(hedgehog)){
-            window.onkeydown = function(e) { 
+        if (isElementInViewport(hedgehog)) {
+            window.onkeydown = function (e) {
                 return !(e.keyCode == 32)
             }
-        }else{
-            window.onkeydown = function(e) { 
+        } else {
+            window.onkeydown = function (e) {
                 return e.keyCode === 32
             }
         }
@@ -287,8 +293,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Passive listeners for touch controls.
     canvas.addEventListener("touchstart", function (evt) {
-        // Only try jumping if the screen is touched with one finger.
-        // Otherwise stop trying to jump.
+        /* Only try jumping if the screen is touched with one finger.
+        Otherwise stop trying to jump. */
         if (evt.touches.length === 1 && isElementInViewport(hedgehog)) {
             initiateJump()
         } else {
