@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         let gravity = 1
-        let speed = 13
+        let speed = 10
         playerPosition = 1
 
         let timerId = setInterval(function () {
@@ -131,27 +131,39 @@ document.addEventListener('DOMContentLoaded', () => {
     function generateObstacles() {
         if (isGameOver === false) {
             let randomTime = randomIntFromInterval(spawnMinInterval, spawnMaxInterval)
-            let obstaclePosition = 1000
+            let randomSpawn = false
+            if(randomIntFromInterval(1, 10) < 7 && slideSpeed >= 2.55){
+                randomSpawn = true
+            }
+
+            let obstaclePosition = 1062
+            let obstaclePosition2 = 1000
+            // let obstaclePosition3 = 1038
 
             const obstacle = document.createElement('section')
-            // const obstacle2 = document.createElement('section')
+            const obstacle2 = document.createElement('section')
             obstacle.classList.add('obstacle')
-            // obstacle2.classList.add('obstacle')
 
             obstacleRemoved = false
 
             let whichObstacle = randomIntFromInterval(1, 3)
+            let whichObstacle2 = randomIntFromInterval(1, 3)
             obstacle.style.backgroundImage = "url('images/obstacle_" + whichObstacle + ".png')"
-            // obstacle2.style.backgroundImage = "url('images/obstacle_" + whichObstacle + ".png')"
 
             grid.appendChild(obstacle)
-            // grid.appendChild(obstacle2)
+            
+            if(randomSpawn){
+                obstacle2.classList.add('obstacle')
+                obstacle2.style.backgroundImage = "url('images/obstacle_" + whichObstacle2 + ".png')"
+                grid.appendChild(obstacle2)
+            }
             obstacle.style.left = obstaclePosition + 'px'
-            // obstacle2.style.left = (obstaclePosition + 60) + 'px'
+            obstacle2.style.left = obstaclePosition2 + 'px'
 
             if (isGameOver === false) {
                 let timerId = setInterval(function () {
-                    if (obstaclePosition > 20 && obstaclePosition < 80 && playerPosition < 35) {
+                    if ((obstaclePosition > 20 && obstaclePosition < 80 && playerPosition < 44) ||
+                        (obstaclePosition2 > 20 && obstaclePosition2 < 80 && playerPosition < 44 && randomSpawn)) {
                         clearInterval(timerId)
                         // Show game over message based on if the user is using a touchscreen device or not
                         if (isTouchDevice) {
@@ -168,7 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     if (obstaclePosition < -70) {
                         obstacle.remove()
-                        // obstacle2.remove()
                         score++
                         if (score >= highScore) {
                             highScore = score
@@ -186,11 +197,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         clearInterval(timerId)
                         return
                     }
+
+                    if(obstaclePosition2 < -70){
+                        obstacle2.remove()
+                    }
+
                     // Move obstacle according to the slide speed if the game is not over
                     if (!isGameOver) {
                         obstaclePosition -= slideSpeed
+                        obstaclePosition2 -= slideSpeed
                         obstacle.style.left = obstaclePosition + 'px'
-                        // obstacle2.style.left = (obstaclePosition + 60) + 'px'
+                        obstacle2.style.left = obstaclePosition2 + 'px'
                     } else {
                         clearTimeout(timeout)
                         obstaclePosition = 1000
@@ -231,6 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (spawnMinInterval >= 400) {
                 spawnMinInterval -= 0.04
             }
+            console.log("slideSpeed " + slideSpeed)
             slideSpeed += 0.0001
         }, 1)
     }
