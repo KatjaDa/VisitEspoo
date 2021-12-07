@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let isJumping = false
     let isGameOver = true
-    let slideSpeed = 2
+    let slideSpeed = 2.8
     let spawnMaxInterval = 3500
     let spawnMinInterval = 1000
     let tryToJump = 0
@@ -130,107 +130,83 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function generateObstacles() {
         if (isGameOver === false) {
-            // const obstacles = []
-
+            let obstacles = []
             let randomTime = randomIntFromInterval(spawnMinInterval, spawnMaxInterval)
-            let randomSpawn = false
-            let randomSpawn2 = false
-            if(randomIntFromInterval(1, 10) > 7 && slideSpeed >= 2.55){
-                randomSpawn = true
-            }
-            if(randomIntFromInterval(1, 10) > 5 && slideSpeed >= 2.8 && randomSpawn){
-                randomSpawn2 = true
-            }
+            let numberOfObstacles = 1
 
-            let obstaclePosition = 1062
-            let obstaclePosition2 = 1000
-            let obstaclePosition3 = 938
-
-            let whichObstacle = randomIntFromInterval(1, 3)
-            let whichObstacle2 = randomIntFromInterval(1, 3)
-            let whichObstacle3 = randomIntFromInterval(1, 3)
-
-            const obstacle = document.createElement('section')
-            const obstacle2 = document.createElement('section')
-            const obstacle3 = document.createElement('section')
-
-            obstacle.classList.add('obstacle')
-            obstacle.style.backgroundImage = "url('images/obstacle_" + whichObstacle + ".png')"
-            grid.appendChild(obstacle)
-            
-            if(randomSpawn){
-                obstacle2.classList.add('obstacle')
-                obstacle2.style.backgroundImage = "url('images/obstacle_" + whichObstacle2 + ".png')"
-                grid.appendChild(obstacle2)
-            }
-            if(randomSpawn2){
-                obstacle3.classList.add('obstacle')
-                obstacle3.style.backgroundImage = "url('images/obstacle_" + whichObstacle3 + ".png')"
-                grid.appendChild(obstacle3)
+            if (slideSpeed >= 2.55 && slideSpeed < 2.8) {
+                numberOfObstacles = randomIntFromInterval(1, 2)
+                // if(randomIntFromInterval(1, 3) < 3){
+                //     numberOfObstacles = 1
+                // }
+            } else if (slideSpeed >= 2.8) {
+                numberOfObstacles = randomIntFromInterval(1, 3)
+                // if(randomIntFromInterval(1, 3) < 3){
+                //     numberOfObstacles = 2
+                // }
             }
 
-            obstacle.style.left = obstaclePosition + 'px'
-            obstacle2.style.left = obstaclePosition2 + 'px'
-            obstacle3.style.left = obstaclePosition3 + 'px'
+            for (let i = 0; i < numberOfObstacles; i++) {
+                let whichObstacle = randomIntFromInterval(1, 3)
+                const obstacle = document.createElement('section')
+                obstacle.classList.add('obstacle')
+                obstacle.style.backgroundImage = "url('images/obstacle_" + whichObstacle + ".png')"
+                obstacle.position = 1000 + i * 60
+                obstacle.style.left = obstacle.position + 'px'
+                obstacles.push(obstacle)
+                grid.appendChild(obstacles[i])
+            }
 
             if (isGameOver === false) {
                 let timerId = setInterval(function () {
-                    if ((obstaclePosition > 20 && obstaclePosition < 80 && playerPosition < 44) ||
-                        (obstaclePosition2 > 20 && obstaclePosition2 < 80 && playerPosition < 44 && randomSpawn) ||
-                        (obstaclePosition3 > 20 && obstaclePosition3 < 80 && playerPosition < 44 && randomSpawn2)) {
-                        clearInterval(timerId)
-                        // Show game over message based on if the user is using a touchscreen device or not
-                        if (isTouchDevice) {
-                            guideText.innerHTML = "Game Over. Tap the screen to try again!"
-                        } else {
-                            guideText.innerHTML = "Game Over. Press the spacebar to try again!"
+                    for (let i = 0; i < obstacles.length; i++) {
+                        if (obstacles[i].position > 20 && obstacles[i].position < 80 && playerPosition < 44) {
+                            clearInterval(timerId)
+                            // Show game over message based on if the user is using a touchscreen device or not
+                            if (isTouchDevice) {
+                                guideText.innerHTML = "Game Over. Tap the screen to try again!"
+                            } else {
+                                guideText.innerHTML = "Game Over. Press the spacebar to try again!"
+                            }
+                            hedgehog.style.backgroundImage = "url('images/Hedgehog.png')"
+                            isGameOver = true
+                            stopAudioClips()
+                            audioClips[5].play()
+                            clearTimeout(timeout)
+                            return
                         }
-                        hedgehog.style.backgroundImage = "url('images/Hedgehog.png')"
-                        isGameOver = true
-                        stopAudioClips()
-                        audioClips[5].play()
-                        clearTimeout(timeout)
-                        return
-                    }
-                    if (obstaclePosition < -70) {
-                        obstacle.remove()
-                        score++
-                        if (score >= highScore) {
-                            highScore = score
-                            highScoreText.innerHTML = "Highscore: " + highScore
+                        if (obstacles[i].position < -70) {
+                            obstacles[i].remove()
+                            obstacles.shift()
+                            score++
+                            if (score >= highScore) {
+                                highScore = score
+                                highScoreText.innerHTML = "Highscore: " + highScore
+                            }
+                            scoreCounterTo10++
+                            if (scoreCounterTo10 === 10) {
+                                audioClipTenPoints.play()
+                                scoreCounterTo10 = 0
+                            } else {
+                                audioClipsScore[(-1 + scoreCounterTo10)].play()
+                            }
+                            scoreText.innerHTML = "Score: " + score
+                            if (obstacles.length === 0) {
+                                clearInterval(timerId)
+                                return
+                            }
                         }
-                        scoreCounterTo10++
-                        if (scoreCounterTo10 === 10) {
-                            audioClipTenPoints.play()
-                            scoreCounterTo10 = 0
-                        } else {
-                            audioClipsScore[(-1 + scoreCounterTo10)].play()
-                        }
-                        scoreText.innerHTML = "Score: " + score
-                        clearInterval(timerId)
-                        return
-                    }
 
-                    if(obstaclePosition2 < -70){
-                        obstacle2.remove()
-                    }
-                    if(obstaclePosition3 < -70){
-                        obstacle3.remove()
-                    }
-
-                    // Move obstacle according to the slide speed if the game is not over
-                    if (!isGameOver) {
-                        obstaclePosition -= slideSpeed
-                        obstaclePosition2 -= slideSpeed
-                        obstaclePosition3 -= slideSpeed
-                        obstacle.style.left = obstaclePosition + 'px'
-                        obstacle2.style.left = obstaclePosition2 + 'px'
-                        obstacle3.style.left = obstaclePosition3 + 'px'
-                    } else {
-                        clearTimeout(timeout)
-                        obstaclePosition = 1000
-                        clearInterval(timerId)
-                        return
+                        // Move obstacle according to the slide speed if the game is not over
+                        if (!isGameOver && obstacles.length > 0) {
+                            obstacles[i].position -= slideSpeed
+                            obstacles[i].style.left = obstacles[i].position + 'px'
+                        } else {
+                            clearTimeout(timeout)
+                            // obstacles[i].position = 1000
+                            clearInterval(timerId)
+                            return
+                        }
                     }
                 }, 1)
             } else return
@@ -240,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } else {
             clearTimeout(timeout)
-            obstaclePosition = 1000
+            // obstaclePosition = 1000
             return true
         }
     }
@@ -266,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (spawnMinInterval >= 400) {
                 spawnMinInterval -= 0.04
             }
-            console.log("slideSpeed " + slideSpeed)
+            // console.log("slideSpeed " + slideSpeed)
             slideSpeed += 0.0001
         }, 1)
     }
