@@ -5,6 +5,7 @@
   background-image: url('../images/Hedgehog.png');
   bottom: 0px;
   z-index: 2;
+  left: 20px;
 }
 
 .obstacle {

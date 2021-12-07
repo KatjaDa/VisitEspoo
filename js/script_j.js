@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (isGameOver === false) {
                 let timerId = setInterval(function () {
-                    if (obstaclePosition > 0 && obstaclePosition < 52 && playerPosition < 52) {
+                    if (obstaclePosition > 20 && obstaclePosition < 72 && playerPosition < 72) {
                         clearInterval(timerId)
                         // Show game over message based on if the user is using a touchscreen device or not
                         if (isTouchDevice) {
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         clearTimeout(timeout)
                         return
                     }
-                    if (obstaclePosition < -120) {
+                    if (obstaclePosition < -70) {
                         obstacle.remove()
                         score++
                         if (score >= highScore) {
