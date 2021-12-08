@@ -17,7 +17,6 @@ if(i.src== "https://robohash.org/robo3"||i.src=="https://robohash.org/robo6"){
 }
 
 // Here starts api fetch for movies
-'use strict';
 // constant to api url
 const apiurl = "https://api.tvmaze.com/search/shows?q=horror";
 
