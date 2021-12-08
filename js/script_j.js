@@ -134,16 +134,18 @@ document.addEventListener('DOMContentLoaded', () => {
             let randomTime = randomIntFromInterval(spawnMinInterval, spawnMaxInterval)
             let numberOfObstacles = 1
 
-            if (slideSpeed >= 2.55 && slideSpeed < 2.9) {
+            if (slideSpeed >= 2.55) {
+                if (randomIntFromInterval(1, score) > 9) {
+                    numberOfObstacles++
+                }
+            }
+            if (slideSpeed >= 2.9) {
+                if (randomIntFromInterval(1, score) > 30)
+                    numberOfObstacles++
+            }
+
+            if (randomIntFromInterval(1, 9) === 9 && numberOfObstacles > 1) {
                 numberOfObstacles = randomIntFromInterval(1, 2)
-                // if(randomIntFromInterval(1, 3) < 3){
-                //     numberOfObstacles = 1
-                // }
-            } else if (slideSpeed >= 2.9) {
-                numberOfObstacles = randomIntFromInterval(1, 3)
-                // if(randomIntFromInterval(1, 3) < 3){
-                //     numberOfObstacles = 2
-                // }
             }
 
             for (let i = 0; i < numberOfObstacles; i++) {
@@ -239,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (spawnMaxInterval > 800) {
                 spawnMaxInterval -= 0.12
             }
-            if (spawnMinInterval > 400) {
+            if (spawnMinInterval > 440) {
                 spawnMinInterval -= 0.04
             }
             // console.log("spawnMaxInterval " + spawnMaxInterval)
