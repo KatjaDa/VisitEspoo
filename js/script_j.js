@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function generateObstacles() {
         if (isGameOver === false) {
             let obstacles = []
-            let randomTime = randomIntFromInterval(spawnMinInterval, spawnMaxInterval)
+            let randomTime = randomIntFromInterval((spawnMinInterval + slideSpeed), (spawnMaxInterval + slideSpeed))
             let numberOfObstacles = 1
 
             if (slideSpeed >= 2.55) {
@@ -157,6 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 obstacle.style.left = obstacle.position + 'px'
                 obstacles.push(obstacle)
                 grid.appendChild(obstacles[i])
+                randomTime += 20 * i
             }
 
             if (isGameOver === false) {
@@ -241,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (spawnMaxInterval > 800) {
                 spawnMaxInterval -= 0.12
             }
-            if (spawnMinInterval > 440) {
+            if (spawnMinInterval > 400) {
                 spawnMinInterval -= 0.04
             }
             // console.log("spawnMaxInterval " + spawnMaxInterval)
