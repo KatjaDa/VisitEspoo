@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function generateObstacles() {
         if (isGameOver === false) {
             let obstacles = []
-            let randomTime = randomIntFromInterval((spawnMinInterval + slideSpeed), (spawnMaxInterval + slideSpeed))
+            let randomTime = randomIntFromInterval(spawnMinInterval, spawnMaxInterval)
             let numberOfObstacles = 1
 
             if (slideSpeed >= 2.55) {
