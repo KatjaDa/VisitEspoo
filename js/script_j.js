@@ -134,12 +134,12 @@ document.addEventListener('DOMContentLoaded', () => {
             let randomTime = randomIntFromInterval(spawnMinInterval, spawnMaxInterval)
             let numberOfObstacles = 1
 
-            if (slideSpeed >= 2.55 && slideSpeed < 2.8) {
+            if (slideSpeed >= 2.55 && slideSpeed < 2.9) {
                 numberOfObstacles = randomIntFromInterval(1, 2)
                 // if(randomIntFromInterval(1, 3) < 3){
                 //     numberOfObstacles = 1
                 // }
-            } else if (slideSpeed >= 2.8) {
+            } else if (slideSpeed >= 2.9) {
                 numberOfObstacles = randomIntFromInterval(1, 3)
                 // if(randomIntFromInterval(1, 3) < 3){
                 //     numberOfObstacles = 2
