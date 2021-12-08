@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let isJumping = false
     let isGameOver = true
-    let slideSpeed = 2.8
+    let slideSpeed = 2
     let spawnMaxInterval = 3500
     let spawnMinInterval = 1000
     let tryToJump = 0
@@ -236,13 +236,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 spawnMaxInterval = 3500
                 spawnMinInterval = 1000
             }
-            if (spawnMaxInterval >= 1000) {
-                spawnMaxInterval -= 0.04
+            if (spawnMaxInterval > 800) {
+                spawnMaxInterval -= 0.12
             }
-            if (spawnMinInterval >= 400) {
+            if (spawnMinInterval > 400) {
                 spawnMinInterval -= 0.04
             }
-            // console.log("slideSpeed " + slideSpeed)
+            // console.log("spawnMaxInterval " + spawnMaxInterval)
             slideSpeed += 0.0001
         }, 1)
     }
