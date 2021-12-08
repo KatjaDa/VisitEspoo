@@ -1,87 +1,81 @@
-.dino {
+.hedgehog {
   position: absolute;
   width: 60px;
   height: 60px;
-  background-image: url('../images/Hedgehog_walk.gif');
+  background-image: url('../images/Hedgehog.png');
   bottom: 0px;
   z-index: 2;
+  left: 20px;
 }
 
 .obstacle {
   position: absolute;
   width: 60px;
   height: 60px;
-  /* background-image: url('../images/obstacle_3.png'); */
   bottom: 0px;
   z-index: 3;
 }
 
 .slidingBackground {
   background: url("../images/background.png") repeat-x left top;
-  position: absolute;
-  bottom: 50%;
-  left: 25%;
-  width: 50%;
   height: 200px;
+  width: 1000px;
   z-index: 1;
 }
 
-@keyframes slideright {
-  from {
-      background-position: 70000%;
-  }
-  to {
-      background-position: 0%;
-  }
-}
-
-@-webkit-keyframes slideright {
-  from {
-      background-position: 70000%;
-  }
-  to {
-      background-position: 0%;
-  }
-}
-
-#desert {
+#espoo {
   position: absolute;
   bottom: 50%;
-  left: 25%;
-  width: 50%;
+  width: 1000px;
   height: 200px;
+  left: 0;
+  right: 0;
+  margin: auto;
   overflow: hidden;
 }
 
+#scoreText {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  margin: 3px;
+  color: white;
+  font-size: 1.3em;
+}
 
+#highScoreText {
+  position: absolute;
+  top: 32px;
+  right: 16px;
+  margin: 3px;
+  color: white;
+  font-size: 1.3em;
+}
 
-
-
-
-
-
-
-
-
-
-
-
+#guideText {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  color: white;
+  font-size: 1.3em;
+}
 
 body {
   background-color: #363537;
   display: flex;
   flex-wrap: wrap;
 }
-h1,h2,h3, p{
+
+h1, h2, h3, p {
   color: white;
 }
 
-header{
+header {
   display: flex;
   flex-wrap: nowrap;
   width: 100%;
   height: auto;
-  margin:auto;
+  margin: auto;
 
 }
 
@@ -97,95 +91,97 @@ nav ul {
   list-style: none;
   padding: 0;
   display: flex;
-  }
+}
 
-  nav li {
-    margin-left: 2em;
-  }
+nav li {
+  margin-left: 2em;
+}
+
 nav a {
-      text-decoration: none;
-      color: white;
-  }
-    
+  text-decoration: none;
+  color: white;
+}
+
 nav a:hover,
 nav a:focus {
-      color: #fd5f00;
-  }
-          
+  color: #fd5f00;
+}
+
 
 figure {
   position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin:0;
+  margin: 0;
 }
 
-figcaption{
-    position: absolute;
-    text-align: center;
-    top:0;
-    color: white;
-    font-size: 4em;
+figcaption {
+  position: absolute;
+  text-align: center;
+  top: 0;
+  color: white;
+  font-size: 4em;
 }
 
 #bigImg {
-      width: 100%;
-      height: auto;
+  width: 100%;
+  height: auto;
 }
 
-#lightboxImages img, #searchResults img{
+#lightboxImages img, #searchResults img {
   padding: 0.5em;
 }
 
-a{
+a {
   color: white;
 }
 
-#searchResults{
+#searchResults {
   display: flex;
   position: relative;
   flex-wrap: wrap;
 }
 
-#about{
- width: 100%;
+#about {
+  width: 100%;
 }
 
-footer{
-      width: 100%;
-      height: auto;
+footer {
+  width: 100%;
+  height: auto;
 }
 
 @media (max-width: 640px) {
-      .container {
-        text-align: center;
-}
-    
-.container-nav {
-        flex-direction: column;
-}
-    
-nav ul {
-        flex-direction: column;
-}
-    
-nav li {
-        margin: 0.8em 0;
-}
+  .container {
+    text-align: center;
+  }
 
-figcaption{
-        font-size: 1.7em;
-}
+  .container-nav {
+    flex-direction: column;
+  }
 
-body{
-        display: flex;
-        justify-content: center;
-        text-align: center;
-      }
+  nav ul {
+    flex-direction: column;
+  }
 
+  nav li {
+    margin: 0.8em 0;
+  }
 
+  figcaption {
+    font-size: 1.7em;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
 }
 
-
-    
+#canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
