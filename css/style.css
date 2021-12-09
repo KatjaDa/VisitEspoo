@@ -25,6 +25,8 @@
 }
 
 #espoo {
+  display: flex;
+  flex-wrap: nowrap;
   position: relative;
   bottom: 50%;
   width: 1000px;
@@ -62,7 +64,7 @@
 }
 
 #canvas {
-  position: relative;
+  flex: nowrap;
   width: fit-content;
   height: fit-content;
 }
@@ -72,17 +74,20 @@ body {
   background-color: #363537;
   display: flex;
   flex-wrap: wrap;
+  max-width: 1920px;
 }
 
 h1, h2, h3 {
 font-family: 'Raleway', sans-serif;
   color: #FAFAFF;
+  padding: 5px 2px 2px 5px;
+  margin: 0;
 }
 
 p{
   font-family: 'Nunito Sans', sans-serif;
   color: #FAFAFF;
-  margin: 0;
+	margin:5px;
 }
 
 header {
@@ -113,6 +118,7 @@ figcaption {
 #bigImg {
   width: 100%;
   height: auto;
+  margin: auto;
 }
 
 #lightboxImages img, #searchResults img {
@@ -123,6 +129,10 @@ a {
   color: white;
 }
 
+article, #search, #lightboxImages, #about, footer {
+  padding: 10px;
+}
+
 #searchResults {
   display: flex;
   position: relative;
@@ -131,6 +141,7 @@ a {
 
 #about {
   width: 100%;
+  padding: 50px 10px 10px 10px;
 }
 
 footer {
