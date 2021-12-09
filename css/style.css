@@ -116,7 +116,7 @@ body {
 h1, h2, h3 {
 font-family: 'Raleway', sans-serif;
   color: #FAFAFF;
-  padding: 5px 2px 2px 5px;
+  padding: 5px 2px 5px 2px;
   margin: 5px;
 }
 
@@ -219,7 +219,7 @@ footer {
   }
 
   article, #search, #lightboxImages, #about, footer {
-    padding: 40px;
+    padding: 40px 15px 40px 15px;
   }
  
 
