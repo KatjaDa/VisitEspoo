@@ -69,12 +69,48 @@
   height: fit-content;
 }
 
+/* NAV CSS */
+.container {
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container-nav {
+  flex-direction: column;
+}
+
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  flex-direction: column;
+}
+
+nav li {
+  margin: 0.8em 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+nav a:hover,
+nav a:focus {
+  color: #BA3F1D;
+}
+
 /* General CSS for webpage */
+
 body {
   background-color: #363537;
   display: flex;
   flex-wrap: wrap;
-  max-width: 1920px;
+  justify-content: center;
+  text-align: center;
 }
 
 h1, h2, h3 {
@@ -133,79 +169,46 @@ article, #search, #lightboxImages, #about, footer {
   padding: 10px;
 }
 
-#searchResults {
-  display: flex;
-  position: relative;
-  flex-wrap: wrap;
-}
-
 #about {
-  width: 100%;
   padding: 50px 10px 10px 10px;
 }
 
 footer {
   width: 100%;
   height: auto;
+  padding: 10px;
 }
 
-/* NAV CSS */
-.container {
-  width: 95%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+/* Media queries for normal screen */
 
-nav ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-}
-
-nav li {
-  margin-left: 2em;
-}
-
-nav a {
-  text-decoration: none;
-  color: white;
-  font-family: 'Nunito Sans', sans-serif;
-}
-
-nav a:hover,
-nav a:focus {
-  color: #BA3F1D;
-}
-
-/* Media queries for small screen */
-
-@media (max-width: 640px) {
-  .container {
-    text-align: center;
-  }
-
-  .container-nav {
-    flex-direction: column;
+@media (min-width: 640px) {
+  .container{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    text-align: left;
   }
 
   nav ul {
-    flex-direction: column;
+    display: flex;
+    flex-direction: row;
   }
 
   nav li {
-    margin: 0.8em 0;
+    margin-left: 2em;
   }
 
-  figcaption {
-    font-size: 1.7em;
-  }
 
-  body {
+  #searchResults{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    text-align: center;
   }
+
+  #horrorShows{
+    flex-basis: 20%
+  }
+ 
+
 }
 
