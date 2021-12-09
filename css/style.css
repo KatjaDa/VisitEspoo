@@ -1,3 +1,4 @@
+/* Game CSS */
 .hedgehog {
   position: absolute;
   width: 60px;
@@ -24,7 +25,7 @@
 }
 
 #espoo {
-  position: absolute;
+  position: relative;
   bottom: 50%;
   width: 1000px;
   height: 200px;
@@ -60,14 +61,28 @@
   font-size: 1.3em;
 }
 
+#canvas {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+}
+
+/* General CSS for webpage */
 body {
   background-color: #363537;
   display: flex;
   flex-wrap: wrap;
 }
 
-h1, h2, h3, p {
-  color: white;
+h1, h2, h3 {
+font-family: 'Raleway', sans-serif;
+  color: #FAFAFF;
+}
+
+p{
+  font-family: 'Nunito Sans', sans-serif;
+  color: #FAFAFF;
+  margin: 0;
 }
 
 header {
@@ -78,35 +93,6 @@ header {
   margin: auto;
 
 }
-
-.container {
-  width: 95%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-nav ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-}
-
-nav li {
-  margin-left: 2em;
-}
-
-nav a {
-  text-decoration: none;
-  color: white;
-}
-
-nav a:hover,
-nav a:focus {
-  color: #fd5f00;
-}
-
 
 figure {
   position: relative;
@@ -152,6 +138,38 @@ footer {
   height: auto;
 }
 
+/* NAV CSS */
+.container {
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin-left: 2em;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+nav a:hover,
+nav a:focus {
+  color: #BA3F1D;
+}
+
+/* Media queries for small screen */
+
 @media (max-width: 640px) {
   .container {
     text-align: center;
@@ -180,8 +198,3 @@ footer {
   }
 }
 
-#canvas {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
