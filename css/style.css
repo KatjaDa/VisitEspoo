@@ -204,6 +204,11 @@ footer {
   }
 /*Body*/
 
+body{
+  max-width: 1920px;
+  margin: auto;
+}
+
   #searchResults{
     display: flex;
     flex-wrap: wrap;
