@@ -117,7 +117,7 @@ h1, h2, h3 {
 font-family: 'Raleway', sans-serif;
   color: #FAFAFF;
   padding: 5px 2px 2px 5px;
-  margin: 0;
+  margin: 5px;
 }
 
 p{
@@ -166,7 +166,10 @@ a {
 }
 
 article, #search, #lightboxImages, #about, footer {
-  padding: 10px;
+  padding: 20px;
+}
+#lightboxImages{
+  padding-bottom: 60px;
 }
 
 #about {
@@ -182,6 +185,8 @@ footer {
 /* Media queries for normal screen */
 
 @media (min-width: 640px) {
+
+  /* Nav */
   .container{
     display: flex;
     justify-content: space-between;
@@ -197,7 +202,7 @@ footer {
   nav li {
     margin-left: 2em;
   }
-
+/*Body*/
 
   #searchResults{
     display: flex;
@@ -207,6 +212,14 @@ footer {
 
   #horrorShows{
     flex-basis: 20%
+  }
+
+  #lightboxImages{
+    padding-bottom: 100px;
+  }
+
+  article, #search, #lightboxImages, #about, footer {
+    padding: 40px;
   }
  
 
