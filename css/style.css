@@ -187,6 +187,11 @@ footer {
   padding: 10px;
 }
 
+iframe {
+	max-width: 100%;
+	height: auto;
+  }
+
 /* Media queries for normal screen */
 
 @media (min-width: 640px) {
@@ -208,7 +213,7 @@ footer {
   nav li {
     margin-left: 15px;
   }
-/* body */
+/*Body*/
 
 body{
   max-width: 1920px;
@@ -237,7 +242,7 @@ body{
   p{
     margin: 8px;
   }
- 
+
 
 }
 
