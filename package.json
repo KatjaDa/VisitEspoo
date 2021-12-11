@@ -1,0 +1,24 @@
+{
+  "name": "webprojects",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "lightbox2": "^2.11.3",
+    "jquery": "^3.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KatjaDa/visitEspoo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KatjaDa/visitEspoo/issues"
+  },
+  "homepage": "https://github.com/KatjaDa/visitEspoo#readme"
+}
