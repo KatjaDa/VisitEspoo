@@ -9,12 +9,35 @@
     <link rel="stylesheet" href="node_modules/lightbox2/dist/css/lightbox.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-    <article id="lightboxImages">
-        <h2>Places to see</h2>
-        <p>Here is a selection of wonderful places to visit.</p>
+    <header>
+        <section class="container container-nav">
+            <section class="titles">
+                <h1>VisitEspoo.fi</h1>
+                <p class="subtitle">Where all your scary dreams come true!</p>
+            </section>
+            <nav>
+                <ul>
+                    <li><a href="#lightboxImages">Destinations</a></li>
+                    <li><a href="index_j.html">Play a game</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+        </section>
+    </header>
+    <article>
+        <figure>
+            <img id="bigImg" src="images/graffitti_big.jpg" alt="Picture of graffiti">
+            <figcaption>
+                <h1>Welcome to Espoo</h3>
+            </figcaption>
+        </figure>
+        <p>More text about Espoo here.</p>
         <p>More text more text more text more text more text more text more text....</p>
+    </article>
+    <article id="lightboxImages">
+        <h2>Destinations</h2>
+        <p>Here is a selection of wonderful places to visit.</p>
         <a href="images/tunnel_monster.jpg" data-lightbox="sights" data-title="Welcoming tunnel">
             <img src="images/tunnel_monster.jpg" style="width: 300px;" alt="Shady tunnel" /></a>
         <a href="images/electric_box.jpg" data-lightbox="sights" data-title="Nice art">
@@ -32,8 +55,30 @@
         <a href="images/tunnel.jpg" data-lightbox="sights" data-title="Welcoming tunnel, not modified">
             <img src="images/tunnel.jpg" style="width: 300px;" alt="Shady tunnel" /></a>
     </article>
-    <section>
-        <h3>About</h3>
+        <section id="espoo">
+        <section class="slidingBackground"></section>
+        <h2 id="guideText"></h2>
+        <h2 id="scoreText"></h2>
+        <h2 id="highScoreText"></h2>
+        <section class="grid">
+            <section class="hedgehog"></section>
+        </section>
+    </section>
+
+    <canvas id="canvas">
+        Your browser does not support canvas element.
+    </canvas>
+    <article id="search">
+        <h2>Something to do indoors</h2>
+        <p>Winter in Finland is really cold and we totally get if you don't want to go out.</p>
+        <p>So here is something to do inside - press search and you get a list of horrible shows to watch.</p>
+        <button id="searchBtn">Search</button>
+        <section id="searchResults">
+            <!-- Search results will come here -->
+        </section>
+    </article>
+    <section id="about">
+        <h2>About</h2>
         <p>Behind this this desing:</p>
         <img src="https://robohash.org/robo" onclick="changeImg(this)">
         <img src="https://robohash.org/robo2" onclick="changeImg(this)">

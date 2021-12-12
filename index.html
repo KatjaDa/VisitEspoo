@@ -5,14 +5,101 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visit Espoo</title>
+    <title>Document</title>
     <link rel="stylesheet" href="node_modules/lightbox2/dist/css/lightbox.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Raleway:wght@300&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-
+    <header>
+        <section class="container container-nav">
+            <section class="titles">
+                <h1>VisitEspoo.fi</h1>
+                <p class="subtitle">Where all your scary dreams come true!</p>
+            </section>
+            <nav>
+                <ul>
+                    <li><a href="#lightboxImages">Destinations</a></li>
+                    <li><a href="#espoo">Play a game</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+        </section>
+    </header>
+    <article id="iframeContainer">
+        <iframe src="https://www.youtube.com/embed/3z5IyhLPWBY" title="YouTube video player"
+            frameborder="0"allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+    </article>
+    <article id="articleImg">
+        <figure>
+            <img id="bigImg" src="images/graffitti_big.jpg" alt="Picture of graffiti">
+            <figcaption>
+                <h1>Welcome to Espoo</h3>
+            </figcaption>
+        </figure>
+        <p>More text about Espoo here.</p>
+        <p>More text more text more text more text more text more text more text....</p>
+    </article>
+    <article id="search">
+        <h2>Something else to watch</h2>
+        <p>If our movie did not meet your expectation, here is something else to watch.</p>
+        <p>Press search and you get a list of horrible shows to watch.</p>
+        <section id="searchResults">
+            <!-- Search results will come here and button will be hidden -->
+            <button id="searchBtn">Search</button>
+        </section>
+    </article>
+    <article id="lightboxImages">
+        <h2>Destinations</h2>
+        <p>Here is a selection of wonderful places to visit.</p>
+        <a href="images/tunnel_monster.jpg" data-lightbox="sights" data-title="Welcoming tunnel">
+            <img src="images/tunnel_monster.jpg" style="width: 300px;" alt="Shady tunnel" /></a>
+        <a href="images/electric_box.jpg" data-lightbox="sights" data-title="Nice art">
+            <img src="images/electric_box.jpg" style="width: 300px;" alt="Electric box" /></a>
+        <a href="images/graffiti.jpg" data-lightbox="sights" data-title="Art">
+            <img src="images/graffiti.jpg" style="width: 300px;" alt="Art" /></a>
+        <a href="images/road.jpg" data-lightbox="sights" data-title="Road">
+            <img src="images/road.jpg" style="width: 300px;" alt="Road" /></a>
+        <a href="images/trash.jpg" data-lightbox="sights" data-title="Wonderful nature">
+            <img src="images/trash.jpg" style="width: 300px;" alt="Trash" /></a>
+        <a href="images/tunnel_2.jpg" data-lightbox="sights" data-title="Another welcoming tunnel">
+            <img src="images/tunnel_2.jpg" style="width: 300px;" alt="tunnel" /></a>
+        <a href="images/mansion.jpg" data-lightbox="sights" data-title="Mansion">
+            <img src="images/mansion.jpg" style="width: 300px;" alt="Mansion" /></a>
+        <a href="images/tunnel.jpg" data-lightbox="sights" data-title="Welcoming tunnel, not modified">
+            <img src="images/tunnel.jpg" style="width: 300px;" alt="Shady tunnel" /></a>
+    </article>
+    <section id="espoo">
+        <section class="slidingBackground"></section>
+        <h2 id="guideText"></h2>
+        <h2 id="scoreText"></h2>
+        <h2 id="highScoreText"></h2>
+        <section class="grid">
+            <section class="hedgehog"></section>
+        </section>
+    </section>
+    <canvas id="canvas">
+        Your browser does not support canvas element.
+    </canvas>
+    <section id="about">
+        <h2>About</h2>
+        <p>Behind this this desing:</p>
+        <img src="https://robohash.org/robo" onclick="changeImg(this)">
+        <img src="https://robohash.org/robo2" onclick="changeImg(this)">
+        <img src="https://robohash.org/robo3" onclick="changeImg(this)">
+    </section>
     <script src="node_modules/lightbox2/dist/js/lightbox-plus-jquery.js"></script>
+    <script src="js/script_j.js"></script>
+    <script src="js/script_k.js"></script>
 </body>
+<footer>
+    <p>Robots lovingly delivered by Robohash.org</p>
+</footer>
 
 </html>

@@ -1,61 +1,268 @@
-.dino {
+/* Game CSS */
+.hedgehog {
   position: absolute;
   width: 60px;
   height: 60px;
-  background-image: url('../images/Hedgehog_walk.gif');
+  background-image: url('../images/Hedgehog.png');
   bottom: 0px;
   z-index: 2;
+  left: 20px;
 }
 
 .obstacle {
   position: absolute;
   width: 60px;
   height: 60px;
-  /* background-image: url('../images/obstacle_3.png'); */
   bottom: 0px;
   z-index: 3;
 }
 
 .slidingBackground {
   background: url("../images/background.png") repeat-x left top;
-  position: absolute;
-  bottom: 50%;
-  left: 25%;
-  width: 50%;
   height: 200px;
+  width: 1000px;
   z-index: 1;
 }
 
-@keyframes slideright {
-  from {
-      background-position: 70000%;
-  }
-  to {
-      background-position: 0%;
-  }
-}
-
-@-webkit-keyframes slideright {
-  from {
-      background-position: 70000%;
-  }
-  to {
-      background-position: 0%;
-  }
-}
-
-#desert {
-  position: absolute;
+#espoo {
+  display: flex;
+  flex-wrap: nowrap;
+  position: relative;
   bottom: 50%;
-  left: 25%;
-  width: 50%;
+  width: 1000px;
   height: 200px;
+  left: 0;
+  right: 0;
+  margin: auto;
   overflow: hidden;
 }
 
-body {
-  background-color: #222425;
+#scoreText {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  margin: 3px;
+  color: white;
+  font-size: 1.3em;
 }
-h1,h2,h3, p{
+
+#highScoreText {
+  position: absolute;
+  top: 32px;
+  right: 16px;
+  margin: 3px;
+  color: white;
+  font-size: 1.3em;
+}
+
+#guideText {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  color: white;
+  font-size: 1.3em;
+}
+
+#canvas {
+  flex: nowrap;
+  width: fit-content;
+  height: fit-content;
+}
+
+/* NAV CSS */
+.container {
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container-nav {
+  flex-direction: column;
+}
+
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  flex-direction: column;
+}
+
+nav li {
+  margin: 0.8em 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.subtitle{
+  color: #BA3F1D;
+  font-style: italic;
+}
+
+nav a:hover,
+nav a:focus {
+  color: #BA3F1D;
+}
+
+/* General CSS for webpage */
+
+body {
+  background-color: #363537;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+h1, h2, h3 {
+font-family: 'Raleway', sans-serif;
+  color: #FAFAFF;
+  padding: 5px 2px 5px 2px;
+  margin: 5px;
+}
+
+p{
+  font-family: 'Nunito Sans', sans-serif;
+  color: #FAFAFF;
+	margin:5px;
+}
+
+header {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: auto;
+  margin: auto;
+
+}
+
+figure {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+}
+
+figcaption {
+  position: absolute;
+  text-align: center;
+  top: 0;
+  color: white;
+  font-size: 4em;
+}
+
+#bigImg {
+  width: 100%;
+  height: auto;
+  margin: auto;
+}
+
+#lightboxImages img, #searchResults img {
+  padding: 0.5em;
+}
+
+a {
   color: white;
 }
+
+article, #search, #lightboxImages, #about, footer {
+  padding: 20px;
+}
+#lightboxImages{
+  padding-bottom: 60px;
+}
+
+#about {
+  padding: 50px 10px 10px 10px;
+}
+
+footer {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+}
+
+#iframeContainer {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
+
+iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#articleImg {
+  padding: 60px 0px 40px 0px;
+}
+
+/* Media queries for normal screen */
+
+@media (min-width: 640px) {
+
+  /* Nav */
+  .container{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    text-align: left;
+    padding-top: 15px;
+  }
+
+  nav ul {
+    display: flex;
+    flex-direction: row;
+  }
+
+  nav li {
+    margin-left: 15px;
+  }
+/*Body*/
+
+body{
+  max-width: 1920px;
+  margin: auto;
+}
+
+  #searchResults{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #horrorShows{
+    flex-basis: 20%
+  }
+
+
+  article, #search, #lightboxImages, #about, footer {
+    padding: 40px 30px 50px 30px;
+  }
+
+  #lightboxImages{
+    padding-bottom: 100px;
+  }
+
+  p{
+    margin: 8px;
+  }
+
+  #iframeContainer {
+    margin: auto;
+  }
+
+
+}
+
