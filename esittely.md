@@ -14,7 +14,26 @@ Käyttötarkoitus: viihdesivusto (humoristinen matkailusivusto), käyttäjäryhm
 Tavoite: tavoitteena on esitellä katsojalle Espoon karmaisevaa puolta.   
 Kohderyhmä: nuoret aikuiset, jotka etsivät hauskaa sisältöä.   
 Tarve: Nähdä Espoo ennen sinne matkustamista. Videon jälkeen katsoja ei ehkä enää haluakaan matkustaa Espooseen...    
-*Disclaimer - Videon ja sivuston osa paikoista eivät ole todellisuudessa edes Espoosta, eikä tavoitteen ole kuvata Espoota realistisesti.*
+*Disclaimer - Videon ja sivuston osa paikoista eivät ole todellisuudessa edes Espoosta, eikä tavoitteen ole kuvata Espoota realistisesti.*   
+Videon CSS koodi jolla saatu video koko ruudun kokoiseksi ja reponsiiviseksi.   
+```css
+#iframeContainer {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
+
+iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+```
 
 ## Tyylit
 Käytimme sivustolla väripalettia: https://coolors.co/363537-fafaff-ba3f1d   
