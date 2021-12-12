@@ -15,6 +15,12 @@ Tavoite: tavoitteena on esitellä katsojalle Espoon karmaisevaa puolta.
 Kohderyhmä: nuoret aikuiset, jotka etsivät hauskaa sisältöä.   
 Tarve: Nähdä Espoo ennen sinne matkustamista. Videon jälkeen katsoja ei ehkä enää haluakaan matkustaa Espooseen...    
 *Disclaimer - Videon ja sivuston osa paikoista eivät ole todellisuudessa edes Espoosta, eikä tavoitteen ole kuvata Espoota realistisesti.*   
+
+
+## Tyylit
+Käytimme sivustolla väripalettia: https://coolors.co/363537-fafaff-ba3f1d   
+Fonttipari: https://www.fontpair.co/pairing/raleway-nunito-sans   
+
 Videon CSS koodi jolla saatu video koko ruudun kokoiseksi ja reponsiiviseksi.   
 ```css
 #iframeContainer {
@@ -34,10 +40,6 @@ iframe {
   height: 100%;
 }
 ```
-
-## Tyylit
-Käytimme sivustolla väripalettia: https://coolors.co/363537-fafaff-ba3f1d   
-Fonttipari: https://www.fontpair.co/pairing/raleway-nunito-sans
 
 ## Peli
 Tähän voisi kirjoittaa jotain pelistä ja laittaa koodisnipettejä?   
