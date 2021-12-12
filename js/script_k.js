@@ -2,8 +2,8 @@
 
 // function to change images by clicking and toggle betweeen 2 pictures by clicking
 function changeImg(i) {
-if(i.src== "https://robohash.org/robo"||i.src=='https://users.metropolia.fi/~katjadah/mediakurssin-palautukset/kat.jpg'){
-    i.src = i.bln ? "https://robohash.org/robo" : 'https://users.metropolia.fi/~katjadah/mediakurssin-palautukset/kat.jpg';
+if(i.src== "https://robohash.org/robo"||i.src=='https://users.metropolia.fi/~katjadah/mediakurssin-palautukset/kat2.jpg'){
+    i.src = i.bln ? "https://robohash.org/robo" : 'https://users.metropolia.fi/~katjadah/mediakurssin-palautukset/kat2.jpg';
     i.bln = !i.bln; 
 } if (i.src== "https://robohash.org/robo2"||i.src=="https://robohash.org/robo5"){
     i.src = i.bln ? "https://robohash.org/robo2" : "https://robohash.org/robo5";
