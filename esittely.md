@@ -1,10 +1,10 @@
 ## Ryhmän tiedot
-Tähän tulee ryhmän tiedot. 
+Ryhmän jäsenet: Katja, Lea, Jonathan.    
 
 ## Sovelluksen yleiskuvaus
 Visit Espoo - sovellus josta näkee Espoon nähtävyydet ja mitä voisi tehdä. Tehty huumorilla, sarkastiseen kauhutyyliin.   
 Paikat eivät välttämättä ole edes Espoosta, ja ehkä käyttäjän ei enää tee mieli matkustaa Espooseen nähtyään sivuston... :D   
-Sisältönä kuvia, esittely, video, peli ja kartta Espoosta.  
+Sisältönä nähtävyyksien esittely ja kuvia, video, peli ja kartta Espoosta.  
 TÄHÄN VOISI LAITTAA LINKIN SOVELLUKSEEN    
 
 ### Käyttötarkoitus ja käyttäjät
