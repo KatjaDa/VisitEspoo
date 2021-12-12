@@ -4,16 +4,17 @@ Tähän tulee ryhmän tiedot.
 ## Sovelluksen yleiskuvaus
 Visit Espoo - sovellus josta näkee Espoon nähtävyydet ja mitä voisi tehdä. Tehty huumorilla, sarkastiseen kauhutyyliin.   
 Paikat eivät välttämättä ole edes Espoosta, ja ehkä käyttäjän ei enää tee mieli matkustaa Espooseen nähtyään sivuston... :D   
-Sisältönä kuvia, esittely, video, peli ja kartta Espoosta.   
+Sisältönä kuvia, esittely, video, peli ja kartta Espoosta.  
+TÄHÄN VOISI LAITTAA LINKIN SOVELLUKSEEN    
 
 ### Käyttötarkoitus ja käyttäjät
-Käyttötarkoitus: viihdesivusto (humoristinen matkailusivusto), käyttäjäryhmä: turistit 
+Käyttötarkoitus: viihdesivusto (humoristinen matkailusivusto), käyttäjäryhmä: nuoret aikuiset. 
 
-### Muuta mitä pitää laittaa
-Sovelluksen ominaisuudet ja toiminnot.  
-Käytetyt APIt koodiesimerkkeineen  
-Muut käyttämänne tekniikat (esim CSS-animaatiot + muut jotka haluatte mainita)  
-Linkki sovellukseen  
+### Video
+Tavoite: tavoitteena on esitellä katsojalle Espoon karmaisevaa puolta.   
+Kohderyhmä: nuoret aikuiset, jotka etsivät hauskaa sisältöä.   
+Tarve: Nähdä Espoo ennen sinne matkustamista. Videon jälkeen katsoja ei ehkä enää haluakaan matkustaa Espooseen...    
+*Disclaimer - Videon ja sivuston osa paikoista eivät ole todellisuudessa edes Espoosta, eikä tavoitteen ole kuvata Espoota realistisesti.*
 
 ## Tyylit
 Käytimme sivustolla väripalettia: https://coolors.co/363537-fafaff-ba3f1d   
