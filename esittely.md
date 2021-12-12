@@ -1,5 +1,5 @@
 ## Ryhmän tiedot
-Ryhmän jäsenet: Katja, Lea, Jonathan.    
+Ryhmän jäsenet: Katja, Lea, Jonathan. Ryhmäläisten kuvat löytyy sivulta klikkaamalla robotteja.   
 
 ## Sovelluksen yleiskuvaus
 Visit Espoo - sovellus josta näkee Espoon nähtävyydet ja mitä voisi tehdä. Tehty huumorilla, sarkastiseen kauhutyyliin.   
