@@ -5,7 +5,7 @@ Ryhmän jäsenet: Katja, Lea, Jonathan. Ryhmäläisten kuvat löytyy sivulta kli
 Visit Espoo - sovellus josta näkee Espoon nähtävyydet ja mitä voisi tehdä. Tehty huumorilla, sarkastiseen kauhutyyliin.   
 Paikat eivät välttämättä ole edes Espoosta, ja ehkä käyttäjän ei enää tee mieli matkustaa Espooseen nähtyään sivuston... :D   
 Sisältönä nähtävyyksien esittely ja kuvia, video, peli ja kartta Espoosta.  
-TÄHÄN VOISI LAITTAA LINKIN SOVELLUKSEEN    
+<!-- TÄHÄN VOISI LAITTAA LINKIN SOVELLUKSEEN -->
 
 ### Käyttötarkoitus ja käyttäjät
 Käyttötarkoitus: viihdesivusto (humoristinen matkailusivusto), käyttäjäryhmä: nuoret aikuiset. 
