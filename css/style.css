@@ -223,6 +223,7 @@ iframe {
   right: 0;
   width: 100%;
   height: 100%;
+  border: none;
 }
 
 #articleImg {
@@ -280,9 +281,6 @@ body{
     margin: 8px;
   }
 
-  #iframeContainer {
-    margin: auto;
-  }
 
 
 }
