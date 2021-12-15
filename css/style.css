@@ -126,10 +126,6 @@ nav a {
   font-style: italic;
 }
 
-.redPText {
-  color: #BA3F1D;
-}
-
 nav a:hover,
 nav a:focus {
   color: #BA3F1D;
@@ -156,6 +152,12 @@ p {
   font-family: 'Nunito Sans', sans-serif;
   color: #FAFAFF;
   margin: 5px;
+}
+
+span {
+  font-family: 'Nunito Sans', sans-serif;
+  color: #BA3F1D;
+  margin: 5px 0px 5px 0px;
 }
 
 header {
