@@ -232,6 +232,16 @@ iframe {
   padding: 60px 0px 40px 0px;
 }
 
+
+#map{
+  height: 800px;
+  width: 800px;
+  margin:5rem auto;
+}
+#map h3{
+  color: #363537;
+}
+
 /* Media queries for normal screen */
 
 @media (min-width: 640px) {
