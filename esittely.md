@@ -1,28 +1,30 @@
 ## Ryhmän tiedot
-Ryhmän jäsenet: Katja, Lea, Jonathan. Ryhmäläisten kuvat löytyy sivulta klikkaamalla robotteja.   
-
-## Sovelluksen yleiskuvaus
-Visit Espoo - sovellus josta näkee Espoon nähtävyydet ja mitä voisi tehdä. Tehty huumorilla, sarkastiseen kauhutyyliin.   
-Paikat eivät välttämättä ole edes Espoosta, ja ehkä käyttäjän ei enää tee mieli matkustaa Espooseen nähtyään sivuston... :D   
-Sisältönä nähtävyyksien esittely ja kuvia, video, peli ja kartta Espoosta.  
+Ryhmän jäsenet: Katja, Lea ja Jonathan. Ryhmäläisten kuvat löytyy sivulta klikkaamalla robotteja.
 <!-- TÄHÄN VOISI LAITTAA LINKIN SOVELLUKSEEN -->
 
+## Sovelluksen yleiskuvaus
+Visit Espoo - sovellus, josta näkee Espoon nähtävyyksiä ja mitä Espoossa voisi tehdä. Tehty huumorilla, sarkastiseen kauhutyyliin.   
+Paikat eivät välttämättä ole edes Espoosta, ja ehkä käyttäjän ei enää tee mieli matkustaa Espooseen tämän sivuston nähtyään... :D   
+Sisältönä on nähtävyyksien esittelyä, kuvia, video, peli, kauhuelokuvien hakuominaisuus ja kartta Espoosta.  
+
 ### Käyttötarkoitus ja käyttäjät
-Käyttötarkoitus: viihdesivusto (humoristinen matkailusivusto), käyttäjäryhmä: nuoret aikuiset. 
+Käyttötarkoitus: viihdesivusto (humoristinen matkailusivusto)  
+Käyttäjäryhmä: nuoret aikuiset
 
-### Video
-Tavoite: tavoitteena on esitellä katsojalle Espoon karmaisevaa puolta.   
-Kohderyhmä: nuoret aikuiset, jotka etsivät hauskaa sisältöä.   
-Tarve: Nähdä Espoo ennen sinne matkustamista. Videon jälkeen katsoja ei ehkä enää haluakaan matkustaa Espooseen...    
-Videon kuvakäsikirjoitus löytyy täältä: ![Käsikirjoitus](https://github.com/KatjaDa/VisitEspoo/blob/development/storyboard.pdf)   
-*Disclaimer - Videon ja sivuston osa paikoista eivät ole todellisuudessa edes Espoosta, eikä tavoitteen ole kuvata Espoota realistisesti.*   
-
+## Video
+Tavoite: tavoitteena on esitellä katsojalle humoristisesti Espoon karmaisevaa puolta kauhutyylillä.  
+Kohderyhmä: nuoret aikuiset, jotka etsivät hauskoja viihdyttäviä videoita.   
+Tarve: Nähdä Espoota ennen sinne matkustamista. Videon jälkeen katsoja ei ehkä enää haluakaan matkustaa Espooseen...  
+Videon kuvakäsikirjoitus löytyy tästä linkistä: [kuvakäsikirjoitus](https://github.com/KatjaDa/VisitEspoo/blob/main/storyboard.pdf)  
+Tästä voi ladata videon kertojaäänet erikseen ilman erikoistehosteita: [kertojaäänen 1. ääniraita](https://github.com/KatjaDa/VisitEspoo/raw/main/audio/WelcomeToEspooVoice_NoFX.wav), [kertojaäänen 2. ääniraita](https://github.com/KatjaDa/VisitEspoo/raw/main/audio/WelcomeToEspooVoice_Whisper_NoFX.wav)
+   
+*Disclaimer: osa videon ja sivuston kuvien paikoista eivät todellisuudessa ole edes Espoossa, eikä tavoitteen ole kuvata Espoota realistisesti.*  
 
 ## Tyylit
-Käytimme sivustolla väripalettia: https://coolors.co/363537-fafaff-ba3f1d   
-Fonttipari: https://www.fontpair.co/pairing/raleway-nunito-sans   
+Käytimme sivustolla seuraavaa väripalettia: https://coolors.co/363537-fafaff-ba3f1d  
+ja fonttiparia: https://www.fontpair.co/pairing/raleway-nunito-sans   
 
-Videon CSS koodi jolla saatu video koko ruudun kokoiseksi ja reponsiiviseksi.   
+Videon CSS-koodi, jolla on saatu video koko ruudun kokoiseksi ja reponsiiviseksi:   
 ```css
 #iframeContainer {
   position: relative;
@@ -43,10 +45,11 @@ iframe {
 ```
 
 ## Peli
-Tähän voisi kirjoittaa jotain pelistä ja laittaa koodisnipettejä?   
+<!-- Tähän voisi kirjoittaa jotain pelistä ja laittaa koodisnipettejä?    -->
+
 
 ## Kuvien muuttaminen klikkaamalla
-Kuvissa on käytetty robohash.org sivustoa, josta voi generoida kuvia kirjoittamalla tekstiä. Tämäkin sivusto on eräänlainen simppeli api.  
+Kuvissa on käytetty robohash.org sivustoa, josta voi generoida kuvia kirjoittamalla tekstiä. Tämäkin sivusto on eräänlainen simppeli API.  
 Tämän jälkeen Javascriptin funktiolla on tehty toiminnallisuus kuvien vaihtumisesta klikkauksella.  
 ### Javascript 
 ```js
@@ -65,37 +68,36 @@ if(i.src== "https://robohash.org/robo3"||i.src=="https://robohash.org/robo6"){
 }
 }
 ```
-## Sarjojen/leffojen haku TVMaze apista  
-Teemaan sopivat sarjat ja leffat on haettu TVMaze apista hakusanalla Horror.  
+## Sarjojen/leffojen haku TVMaze API:sta  
+Teemaan sopivat sarjat ja leffat on haettu TVMaze API:sta hakusanalla Horror.  
 Sivulle haetaan nimi, kuva, kieli sekä linkki sivustolle ja osiot on aseteltu flexboxilla.
-Apin osoite jolla tiedot on haettu:
+Tässä on API:n osoite, jolla tiedot on haettu:
 ```js   
 const apiurl = "https://api.tvmaze.com/search/shows?q=horror";
 ```
-Haun käynnistää etsi napin painallus ja tuleva data käsitellään for loopin avulla.
+Haun käynnistää "Search"-napin painallus ja tuleva data käsitellään for-loopin avulla.
 ```js  
-  for (let i = 2; i < jsonData.length; i++) {
-        // if image picture is not found, image will be changed
-        try {
-            imgAdd = jsonData[i].show.image.medium;
-        } catch(error){
-            imgAdd="images/tunnel_monster.jpg";
-        }
-
-        section.innerHTML += `<article id="horrorShows">
-        <h3>${jsonData[i].show.name}</h3>
-        <img src=${imgAdd} alt="title" width="300px;" height="auto">
-        <p>Language: ${jsonData[i].show.language}</p>
-        <a href=${jsonData[i].show.url} target="_blank">More info from TVMAZE</a>
-        </article>`
+for (let i = 2; i < jsonData.length; i++) {
+    // if image picture is not found, image will be changed
+    try {
+        imgAdd = jsonData[i].show.image.medium;
+    } catch(error){
+        imgAdd="images/tunnel_monster.jpg";
     }
+
+    section.innerHTML += `<article id="horrorShows">
+    <h3>${jsonData[i].show.name}</h3>
+    <img src=${imgAdd} alt="title" width="300px;" height="auto">
+    <p>Language: ${jsonData[i].show.language}</p>
+    <a href=${jsonData[i].show.url} target="_blank">More info from TVMAZE</a>
+    </article>`
+}
 ```
    
-Koko koodi löytyy gitistä: https://github.com/KatjaDa/VisitEspoo   
-kansiosta js ja tiedostosta script_k.js    
+Koko edeltävä koodi löytyy gitistä: https://github.com/KatjaDa/VisitEspoo/blob/main/js/script_k.js      
 
 ## Kartta
-Kartta on tehty js leaflet kirjaston avulla. https://leafletjs.com/   
+Kartta on tehty JS Leaflet kirjaston avulla: https://leafletjs.com/   
 Kartan peruskoordinaatit:    
 ```js
 const mymap = L.map('map').setView([60.21397, 24.64900], 12);
@@ -111,6 +113,6 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: apiKey
 }).addTo(mymap);
 ```
-Laattakerros näyttää kartan "laattakerroksina", eli näyttää kartan verkkoselaimessa yhdistämällä saumattomasti kymmeniä yksilöllisesti pyydettyjä kuva- tai vektoritietotiedostoja. Se on suosituin tapa näyttää ja navigoida karttoja.   
+Laattakerros näyttää kartan "laattakerroksina", eli se näyttää kartan verkkoselaimessa yhdistämällä saumattomasti kymmeniä yksilöllisesti pyydettyjä kuva- tai vektoritietotiedostoja. Se on suosituin tapa näyttää ja navigoida karttoja.   
 
-Lisäksi karttaan on lisätty kuvat ja markkerit muutamille kohdille.    
+Lisäksi karttaan on lisätty kuvat ja markkerit muutamalle kohdalle.    
