@@ -232,6 +232,10 @@ iframe {
   padding: 60px 0px 40px 0px;
 }
 
+#articleImg h3 {
+  font-size: 3rem;
+}
+
 
 #map{
   height: 800px;
@@ -293,6 +297,9 @@ body{
     margin: 8px;
   }
 
+  #articleImg h3 {
+    font-size: 4.5rem;
+  }
 
 
 }
