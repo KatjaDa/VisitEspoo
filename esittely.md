@@ -48,7 +48,7 @@ iframe {
 
 "Hedgehogger" peli perustuu liikkuvien HTML-elementtien väistelyyn siilihahmolla. Siili seikkailee pelissä kuvitteellisessa Espoossa. Siellä sitä vastaan tulee "nähtävyyksiä" eli esteitä, joiden yli siilen pitää hypätä. Nämä esteet ovat HTML section-elementtejä, joissa on taustakuvina sivun teemaan liittyviä piirrustuksia. Este-elementtejä luodaan DOM metodeilla pelin oikealle puolelle ja niitä siirretään pelaajaa kohti vasemmalle "setInterval()" metodin sisällä joka millisekunti. Pelaaja voi hypätä siilihahmollaan näiden esteiden yli ja saada siitä pisteitä. Jos pelaajan hahmoelementti ja este-elementti joutuvat tarpeeksi paljon toistensa päälle peli päättyy.
 
-### Luodaan esteitä, joilla on joku satunnainen kuva kolmesta eri vaihtoehdosta: 
+### Luodaan esteitä, joilla jokaisella on joku oma satunnainen kuva kolmesta eri vaihtoehdosta: 
 ```js
 for (let i = 0; i < numberOfObstacles; i++) {
     let whichObstacle = randomIntFromInterval(1, 3)
@@ -77,7 +77,85 @@ if (!isGameOver && obstacles.length > 0) {
 }
 ```
 
-### Peliä voi pelata vain jos se on näkyvillä selaimessa: 
+### Valitaan joku satunnainen hyppyääni viidestä eri vaihtoehdosta: 
+```js
+/* Choose randomly one of the jump audio clips to play.
+Play the chosen sound if the game over sound isn't playing 
+or has played long enough so that it can be interrupted. */
+let randomJumpSound = randomIntFromInterval(0, 4)
+if ((audioClips[5].currentTime === 0 || audioClips[5].currentTime > 0.3)){
+    stopAudioClips()
+    audioClips[randomJumpSound].play().catch(() => {
+        // The audio clip doesn't play if the user hasn't interacted with the document yet.
+    });
+}
+```
+### Siirretään ylöspäin hypännyttä pelaajan hahmoa alaspäin joka 20 millisekunnin välein niin kauan, kunnes "clearInterval()"-metodi kutsutaan: 
+```js
+let downTimerId = setInterval(function () {
+    gravity = gravity * 1.02
+    speed = speed * gravity
+    playerPosition = playerPosition - speed
+    if (playerPosition > 1)
+        hedgehog.style.bottom = playerPosition + 'px'
+    else {
+        hedgehog.style.bottom = 1 + 'px'
+        clearInterval(downTimerId)
+        isJumping = false
+        hedgehog.style.backgroundImage = "url('images/Hedgehog_run.gif')"
+    }
+}, 20)
+```
+
+### Lopetetaan peli, kun pelaajan hahmo ja este päätyvät liian lähelle toisiaan: 
+```js
+if (obstacles[i].position > 20 && obstacles[i].position < 80 && playerPosition < 44) {
+    clearInterval(timerId)
+    // Show game over message based on if the user is using a touchscreen device or not
+    if (isTouchDevice) {
+        guideText.innerHTML = "Game Over. Tap the screen to try again!"
+    } else {
+        guideText.innerHTML = "Game Over. Press the spacebar to try again!"
+    }
+    hedgehog.style.backgroundImage = "url('images/Hedgehog.png')"
+    isGameOver = true
+    stopAudioClips()
+    audioClips[5].play()
+    clearTimeout(timeout)
+    return
+}
+```
+
+### Lisätään EventListener-metodit pelin näppäimistö- ja kosketusnäyttöohjaukselle:
+```js
+// Listeners for keyboard control
+document.addEventListener('keydown', keyboardControl)
+document.addEventListener('keyup', keyboardControlRelease)
+
+// Passive listeners for touch controls.
+canvas.addEventListener("touchstart", function (evt) {
+    isTouchDevice = true
+    /* Only try jumping if the screen is touched with one finger.
+    Otherwise stop trying to jump. */
+    if (evt.touches.length === 1 && isElementInViewport(hedgehog)) {
+        initiateJump()
+    } else {
+        releaseJump()
+    }
+}, { passive: true })
+
+canvas.addEventListener("touchend", function () {
+    isTouchDevice = true
+    releaseJump()
+}, { passive: true })
+
+canvas.addEventListener("touchcancel", function () {
+    isTouchDevice = true
+    releaseJump()
+}, { passive: true })
+```
+
+### Peliä voi pelata, vain jos se on näkyvillä selainikkunassa: 
 ```js
 // Check if an element is in the viewport.
 function isElementInViewport(el) {

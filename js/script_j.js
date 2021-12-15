@@ -76,11 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
         hedgehog.style.backgroundImage = "url('images/Hedgehog_jump.png')"
 
         /* Choose randomly one of the jump audio clips to play.
-        Play the chosen sound if the "getting 10 points" sound or the game over sound isn't playing 
+        Play the chosen sound if the game over sound isn't playing 
         or has played long enough so that it can be interrupted. */
         let randomJumpSound = randomIntFromInterval(0, 4)
-        if ((audioClips[5].currentTime === 0 || audioClips[5].currentTime > 0.3)) /* &&
-            audioClips[6].currentTime === 0 || audioClips[6].currentTime > 0.3) */ {
+        if ((audioClips[5].currentTime === 0 || audioClips[5].currentTime > 0.3)) {
             stopAudioClips()
             audioClips[randomJumpSound].play().catch(() => {
                 // The audio clip doesn't play if the user hasn't interacted with the document yet.
@@ -194,7 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 return
                             }
                         }
-
                         // Move obstacle according to the slide speed if the game is not over
                         if (!isGameOver && obstacles.length > 0) {
                             obstacles[i].position -= slideSpeed
@@ -213,7 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } else {
             clearTimeout(timeout)
-            // obstaclePosition = 1000
             return true
         }
     }
@@ -239,7 +236,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (spawnMinInterval > 400) {
                 spawnMinInterval -= 0.04
             }
-            // console.log("spawnMaxInterval " + spawnMaxInterval)
             slideSpeed += 0.0001
         }, 1)
     }
@@ -292,10 +288,6 @@ document.addEventListener('DOMContentLoaded', () => {
             window.onkeydown = function (e) {
                 return !(e.keyCode == 32)
             }
-        } else {
-            window.onkeydown = function (e) {
-                return e.keyCode === 32
-            }
         }
     }
 
@@ -320,7 +312,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             releaseJump()
         }
-        console.log("touchstart")
     }, { passive: true })
 
     canvas.addEventListener("touchend", function () {
