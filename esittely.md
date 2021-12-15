@@ -45,8 +45,51 @@ iframe {
 ```
 
 ## Peli
-<!-- Tähän voisi kirjoittaa jotain pelistä ja laittaa koodisnipettejä?    -->
 
+"Hedgehogger" peli perustuu liikkuvien HTML-elementtien väistelyyn siilihahmolla. Siili seikkailee pelissä kuvitteellisessa Espoossa. Siellä sitä vastaan tulee "nähtävyyksiä" eli esteitä, joiden yli siilen pitää hypätä. Nämä esteet ovat HTML section-elementtejä, joissa on taustakuvina sivun teemaan liittyviä piirrustuksia. Este-elementtejä luodaan DOM metodeilla pelin oikealle puolelle ja niitä siirretään pelaajaa kohti vasemmalle "setInterval()" metodin sisällä joka millisekunti. Pelaaja voi hypätä siilihahmollaan näiden esteiden yli ja saada siitä pisteitä. Jos pelaajan hahmoelementti ja este-elementti joutuvat tarpeeksi paljon toistensa päälle peli päättyy.
+
+### Luodaan esteitä, joilla on joku satunnainen kuva kolmesta eri vaihtoehdosta: 
+```js
+for (let i = 0; i < numberOfObstacles; i++) {
+    let whichObstacle = randomIntFromInterval(1, 3)
+    const obstacle = document.createElement('section')
+    obstacle.classList.add('obstacle')
+    obstacle.style.backgroundImage = "url('images/obstacle_" + whichObstacle + ".png')"
+    obstacle.position = 1000 + i * 60
+    obstacle.style.left = obstacle.position + 'px'
+    obstacles.push(obstacle)
+    grid.appendChild(obstacles[i])
+    randomTime += 20 * i
+}
+```
+
+### Liikutetaan esteitä tai lopetetaan niiden liikuttaminen kun peli loppuu:
+```js
+// Move obstacle according to the slide speed if the game is not over
+if (!isGameOver && obstacles.length > 0) {
+        obstacles[i].position -= slideSpeed
+        obstacles[i].style.left = obstacles[i].position + 'px'
+    } else {
+        clearTimeout(timeout)
+        clearInterval(timerId)
+        return
+    }
+}
+```
+
+### Peliä voi pelata vain jos se on näkyvillä selaimessa: 
+```js
+// Check if an element is in the viewport.
+function isElementInViewport(el) {
+    let rect = el.getBoundingClientRect()
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    )
+}
+```
 
 ## Kuvien muuttaminen klikkaamalla
 Kuvissa on käytetty robohash.org sivustoa, josta voi generoida kuvia kirjoittamalla tekstiä. Tämäkin sivusto on eräänlainen simppeli API.  

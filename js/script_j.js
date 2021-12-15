@@ -201,7 +201,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             obstacles[i].style.left = obstacles[i].position + 'px'
                         } else {
                             clearTimeout(timeout)
-                            // obstacles[i].position = 1000
                             clearInterval(timerId)
                             return
                         }
