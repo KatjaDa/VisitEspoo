@@ -95,7 +95,7 @@ Koko koodi löytyy gitistä: https://github.com/KatjaDa/VisitEspoo
 kansiosta js ja tiedostosta script_k.js    
 
 ## Kartta
-Kartta on tehnty js leaflet kirjaston avulla. https://leafletjs.com/   
+Kartta on tehty js leaflet kirjaston avulla. https://leafletjs.com/   
 Kartan peruskoordinaatit:    
 ```js
 const mymap = L.map('map').setView([60.21397, 24.64900], 12);
