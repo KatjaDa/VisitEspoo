@@ -1,12 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-    // Check if the user is using a touchscreen device or not.
-    function checkIfTouchDevice() {
-        return (('ontouchstart' in window) ||
-            (navigator.maxTouchPoints > 0) ||
-            (navigator.msMaxTouchPoints > 0))
-    }
-    let isTouchDevice = checkIfTouchDevice()
+    let isTouchDevice = false
 
     const hedgehog = document.querySelector('.hedgehog')
     const grid = document.querySelector('.grid')
@@ -89,7 +82,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if ((audioClips[5].currentTime === 0 || audioClips[5].currentTime > 0.3)) /* &&
             audioClips[6].currentTime === 0 || audioClips[6].currentTime > 0.3) */ {
             stopAudioClips()
-            audioClips[randomJumpSound].play()
+            audioClips[randomJumpSound].play().catch(() => {
+                // The audio clip doesn't play if the user hasn't interacted with the document yet.
+            });
         }
 
         let gravity = 1
@@ -318,6 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Passive listeners for touch controls.
     canvas.addEventListener("touchstart", function (evt) {
+        isTouchDevice = true
         /* Only try jumping if the screen is touched with one finger.
         Otherwise stop trying to jump. */
         if (evt.touches.length === 1 && isElementInViewport(hedgehog)) {
@@ -329,10 +325,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true })
 
     canvas.addEventListener("touchend", function () {
+        isTouchDevice = true
         releaseJump()
     }, { passive: true })
 
     canvas.addEventListener("touchcancel", function () {
+        isTouchDevice = true
         releaseJump()
     }, { passive: true })
 })

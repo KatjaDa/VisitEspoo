@@ -28,45 +28,67 @@
   display: flex;
   flex-wrap: nowrap;
   position: relative;
-  bottom: 50%;
   width: 1000px;
   height: 200px;
+  margin: auto;
+  overflow: hidden;
+  bottom: 25%;
+}
+
+.hedgehogger {
+  display: flex;
+  flex-wrap: nowrap;
+  position: relative;
+  bottom: 50%;
+  width: 1000px;
+  height: 400px;
   left: 0;
   right: 0;
-  margin: auto;
   overflow: hidden;
 }
 
-#scoreText {
+.gameTextFlexbox {
   position: absolute;
-  top: 8px;
-  right: 16px;
-  margin: 3px;
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#scoreText {
+  text-align: right;
+  margin: 0px;
   color: white;
   font-size: 1.3em;
+  overflow-wrap: break-word;
 }
 
 #highScoreText {
-  position: absolute;
-  top: 32px;
-  right: 16px;
-  margin: 3px;
+  text-align: right;
+  margin: 0px;
   color: white;
   font-size: 1.3em;
+  overflow-wrap: break-word;
+}
+
+.scoreTexts {
+  width: 35%;
+  margin: 8px;
 }
 
 #guideText {
-  position: absolute;
-  top: 8px;
-  left: 16px;
+  text-align: left;
+  width: 65%;
   color: white;
   font-size: 1.3em;
+  overflow-wrap: break-word;
+  margin: 8px;
 }
 
 #canvas {
-  flex: nowrap;
-  width: fit-content;
-  height: fit-content;
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  z-index: 4;
 }
 
 /* NAV CSS */
@@ -179,6 +201,7 @@ article, #search, #lightboxImages, #about, footer {
 
 #about {
   padding: 50px 10px 10px 10px;
+  width: 100%;
 }
 
 footer {
@@ -202,10 +225,21 @@ iframe {
   right: 0;
   width: 100%;
   height: 100%;
+  border: none;
 }
 
 #articleImg {
   padding: 60px 0px 40px 0px;
+}
+
+
+#map{
+  height: 800px;
+  width: 800px;
+  margin:5rem auto;
+}
+#map h3{
+  color: #363537;
 }
 
 /* Media queries for normal screen */
@@ -259,9 +293,6 @@ body{
     margin: 8px;
   }
 
-  #iframeContainer {
-    margin: auto;
-  }
 
 
 }

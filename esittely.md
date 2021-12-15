@@ -5,7 +5,7 @@ Ryhmän jäsenet: Katja, Lea, Jonathan. Ryhmäläisten kuvat löytyy sivulta kli
 Visit Espoo - sovellus josta näkee Espoon nähtävyydet ja mitä voisi tehdä. Tehty huumorilla, sarkastiseen kauhutyyliin.   
 Paikat eivät välttämättä ole edes Espoosta, ja ehkä käyttäjän ei enää tee mieli matkustaa Espooseen nähtyään sivuston... :D   
 Sisältönä nähtävyyksien esittely ja kuvia, video, peli ja kartta Espoosta.  
-TÄHÄN VOISI LAITTAA LINKIN SOVELLUKSEEN    
+<!-- TÄHÄN VOISI LAITTAA LINKIN SOVELLUKSEEN -->
 
 ### Käyttötarkoitus ja käyttäjät
 Käyttötarkoitus: viihdesivusto (humoristinen matkailusivusto), käyttäjäryhmä: nuoret aikuiset. 
@@ -14,6 +14,7 @@ Käyttötarkoitus: viihdesivusto (humoristinen matkailusivusto), käyttäjäryhm
 Tavoite: tavoitteena on esitellä katsojalle Espoon karmaisevaa puolta.   
 Kohderyhmä: nuoret aikuiset, jotka etsivät hauskaa sisältöä.   
 Tarve: Nähdä Espoo ennen sinne matkustamista. Videon jälkeen katsoja ei ehkä enää haluakaan matkustaa Espooseen...    
+Videon kuvakäsikirjoitus löytyy täältä: ![Käsikirjoitus](https://github.com/KatjaDa/VisitEspoo/blob/development/storyboard.pdf)   
 *Disclaimer - Videon ja sivuston osa paikoista eivät ole todellisuudessa edes Espoosta, eikä tavoitteen ole kuvata Espoota realistisesti.*   
 
 
@@ -94,4 +95,22 @@ Koko koodi löytyy gitistä: https://github.com/KatjaDa/VisitEspoo
 kansiosta js ja tiedostosta script_k.js    
 
 ## Kartta
-Tähän voisi kirjoittaa jotain kartasta ja laittaa koodisnipettejä?  
+Kartta on tehnty js leaflet kirjaston avulla. ![Linkki tässä:](https://leafletjs.com/)   
+Kartan peruskoordinaatit:    
+```js
+const mymap = L.map('map').setView([60.21397, 24.64900], 12);
+```
+Kartalle on asetettu "laatta" kerros:   
+```js
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: apiKey
+}).addTo(mymap);
+```
+Laattakerros näyttää kartan "laattakerroksina", eli näyttää kartan verkkoselaimessa yhdistämällä saumattomasti kymmeniä yksilöllisesti pyydettyjä kuva- tai vektoritietotiedostoja. Se on suosituin tapa näyttää ja navigoida karttoja.   
+
+Lisäksi karttaan on lisätty kuvat ja markkerit muutamille kohdille.    
