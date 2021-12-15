@@ -3,7 +3,7 @@ Ryhmän jäsenet: Katja, Lea ja Jonathan. Ryhmäläisten kuvat löytyy sivulta k
 <!-- TÄHÄN VOISI LAITTAA LINKIN SOVELLUKSEEN -->
 
 ## Sovelluksen yleiskuvaus
-VisitEspoo - verkkosivusto, josta näkee Espoon nähtävyyksiä ja mitä Espoossa voisi tehdä. Tehty huumorilla, sarkastiseen kauhutyyliin.   
+VisitEspoo - verkkosivusto, josta näkee Espoon nähtävyyksiä ja mitä Espoossa voisi tehdä. Tehty huumorilla, sarkastiseen kauhutyyliin. Sivu on parodia oikeasta "visitespoo.fi"-verkkosivusta. 
 Paikat eivät välttämättä ole edes Espoosta, ja ehkä käyttäjän ei enää tee mieli matkustaa Espooseen tämän sivuston nähtyään... :D   
 Sisältönä on nähtävyyksien esittelyä, kuvia, video, peli, kauhuelokuvien hakuominaisuus ja kartta Espoosta.  
 
