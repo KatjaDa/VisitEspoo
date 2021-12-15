@@ -1,6 +1,6 @@
 ## Ryhmän tiedot
-Ryhmän jäsenet: Katja, Lea ja Jonathan. Ryhmäläisten kuvat löytyy sivulta klikkaamalla robotteja.
-<!-- TÄHÄN VOISI LAITTAA LINKIN SOVELLUKSEEN -->
+Ryhmän jäsenet: Katja, Lea ja Jonathan. Ryhmäläisten kuvat löytyvät verkkosivulta klikkaamalla sivun alaosasta löytyviä robotteja.  
+Linkki sivulle: https://users.metropolia.fi/~jonathme/VisitEspoo/
 
 ## Sovelluksen yleiskuvaus
 VisitEspoo - verkkosivusto, josta näkee Espoon nähtävyyksiä ja mitä Espoossa voisi tehdä. Tehty huumorilla, sarkastiseen kauhutyyliin. Sivu on parodia oikeasta "visitespoo.fi"-verkkosivusta. 
