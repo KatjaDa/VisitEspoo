@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const scoreText = document.getElementById('scoreText')
     const highScoreText = document.getElementById('highScoreText')
     const canvas = document.getElementById("canvas")
+    const audioVolume = 0.16;
 
     scoreText.innerHTML = "Score: " + 0
     highScoreText.innerHTML = "Highscore: " + 0
@@ -40,24 +41,24 @@ document.addEventListener('DOMContentLoaded', () => {
     let playerPosition = 1
     let scoreCounterTo10 = 0
 
-    const audioClips = [new Audio("audio/hedgehog_jump_1.wav"),
-    new Audio("audio/hedgehog_jump_2.wav"),
-    new Audio("audio/hedgehog_jump_3.wav"),
-    new Audio("audio/hedgehog_jump_4.wav"),
-    new Audio("audio/hedgehog_jump_5.wav"),
-    new Audio("audio/hedgehog_game_over.wav")]
+    const audioClips = []
+
+    for (let i = 0; i < 5; i++) {
+        audioClips.push(new Audio("audio/hedgehog_jump_" + (i + 1) + ".wav"))
+        audioClips[i].volume = audioVolume
+    }
+    audioClips.push(new Audio("audio/hedgehog_game_over.wav"))
+    audioClips[5].volume = audioVolume
 
     const audioClipTenPoints = new Audio("audio/hedgehog_ten_points.wav")
+    audioClipTenPoints.volume = audioVolume
 
-    const audioClipsScore = [new Audio("audio/hedgehog_score_1.wav"),
-    new Audio("audio/hedgehog_score_2.wav"),
-    new Audio("audio/hedgehog_score_3.wav"),
-    new Audio("audio/hedgehog_score_4.wav"),
-    new Audio("audio/hedgehog_score_5.wav"),
-    new Audio("audio/hedgehog_score_6.wav"),
-    new Audio("audio/hedgehog_score_7.wav"),
-    new Audio("audio/hedgehog_score_8.wav"),
-    new Audio("audio/hedgehog_score_9.wav")]
+    const audioClipsScore = []
+
+    for (let i = 0; i < 9; i++) {
+        audioClipsScore.push(new Audio("audio/hedgehog_score_" + (i + 1) + ".wav"))
+        audioClipsScore[i].volume = audioVolume
+    }
 
     // Stop all "audioClips" clips (not "audioClipsScore" clips).
     function stopAudioClips() {
